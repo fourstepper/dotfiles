@@ -1,0 +1,53 @@
+window:
+  decorations: none
+  dimensions:
+    columns: 120
+    lines: 30
+  padding:
+    x: 0
+    y: 0
+
+# Colors (Gruvbox dark)
+colors:
+  # Default colors
+  primary:
+    # hard contrast: background = '#1d2021'
+    background: '#282828'
+    # soft contrast: background = '#32302f'
+    foreground: '#d3d7cf'
+
+  # Normal colors
+  normal:
+    black: '#282828'
+    red: '#aa0000'
+    green: '#00aa00'
+    yellow: '#f5dd2f'
+    blue: '#2693df'
+    magenta: '#aa00aa'
+    cyan: '#00aaaa'
+    white: '#aaaaaa'
+
+  # Bright colors
+  bright:
+    black: '#282828'
+    red: '#aa0000'
+    green: '#00aa00'
+    yellow: '#f5dd2f'
+    blue: '#2693df'
+    magenta: '#aa00aa'
+    cyan: '#00aaaa'
+    white: '#aaaaaa'
+
+# Font configuration
+font:
+  # The size to use.
+  size: 10
+  # The normal (roman) font face to use.
+  normal:
+    family: "Dejavu Sans Mono"
+
+  bold:
+    family: "Dejavu Sans Mono"
+
+  italic:
+    family: "Dejavu Sans Mono"
