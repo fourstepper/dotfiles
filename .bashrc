@@ -37,8 +37,8 @@ export EDITOR="nvim"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'
 export FZF_DEFAULT_OPTS='--bind J:down,K:up --ansi'
 
-# Rust PATH
-export PATH=$HOME/.cargo/bin/:$PATH
+# Add to PATH
+export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$HOME/.cargo/bin/:$PATH
 
 # Turn on parallel history
 shopt -s histappend
