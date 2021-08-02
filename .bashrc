@@ -33,6 +33,9 @@ fi
 
 export EDITOR="nvim"
 
+# don't warn about bash not being available on macos
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # fzf command (primarily for neovim)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*"'
 export FZF_DEFAULT_OPTS='--bind J:down,K:up --ansi'
