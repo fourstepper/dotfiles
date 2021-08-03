@@ -35,6 +35,8 @@ call plug#begin('~/.vim/plugged')
         Plug 'christoomey/vim-tmux-navigator'
     " Golang
         Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+    " Terraform
+        Plug 'hashivim/vim-terraform'
 
     call plug#end()
 " -------------
@@ -116,6 +118,7 @@ set undoreload=10000        " number of lines to save for undo
 set background=dark    " Setting dark mode
 hi Pmenu ctermbg=DarkBlue guibg=DarkBlue
 hi PmenuSel ctermbg=DarkGreen guibg=DarkGreen
+hi Visual guibg=#666666
 
 " colorscheme gruvbox
 "let g:gruvbox_contrast_dark = 'hard'
