@@ -150,8 +150,8 @@ hi Visual guibg=#666666
     " Search for files recursively with fzf
         nnoremap <C-g> :Rg<CR>
     " Ansible-vault-inline to ,v
-        nmap <leader>ve :AnsibleVault <CR>
-        nmap <leader>vd :AnsibleUnvault <CR>
+        nmap <leader>ave :AnsibleVault <CR>
+        nmap <leader>avd :AnsibleUnvault <CR>
     " Git - Merge problems resolution
         nmap <leader>gj :diffget //3<CR>
         nmap <leader>gf :diffget //2<CR>
