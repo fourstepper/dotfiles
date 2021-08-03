@@ -114,12 +114,13 @@ set undodir=$HOME/.vim/undodir " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
 
-" Settings for the color scheme.
+" COLORS RIGHT NOW, WITH DEFAULT SCHEME
 set background=dark    " Setting dark mode
 hi Pmenu ctermbg=DarkBlue guibg=DarkBlue
 hi PmenuSel ctermbg=DarkGreen guibg=DarkGreen
 hi Visual guibg=#666666
 
+" ALTERNATIVE
 " colorscheme gruvbox
 "let g:gruvbox_contrast_dark = 'hard'
 
