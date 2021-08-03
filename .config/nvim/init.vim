@@ -114,7 +114,10 @@ set undoreload=10000        " number of lines to save for undo
 
 " Settings for the color scheme.
 set background=dark    " Setting dark mode
-colorscheme gruvbox
+hi Pmenu ctermbg=DarkBlue guibg=DarkBlue
+hi PmenuSel ctermbg=DarkGreen guibg=DarkGreen
+
+" colorscheme gruvbox
 "let g:gruvbox_contrast_dark = 'hard'
 
 " set Vim-specific sequences for RGB colors
