@@ -8,6 +8,7 @@ case $- in
       *) return;;
 esac
 
+# non-mac rules
 if [ "$(uname)" != "Darwin" ]; then
     # SSH agent and GPG
     unset SSH_AGENT_PID
@@ -21,6 +22,16 @@ if [ "$(uname)" != "Darwin" ]; then
 
     # linux-desktop specific aliases
     alias nautilus='nautilus -w $(pwd)'
+fi
+
+
+# mac-only rules
+if [ "$(uname)" == "Darwin" ]; then
+    if [ -d "/opt/homebrew/Caskroom/google-cloud-sdk" ]; then
+        # Source google-cloud-sdk components
+        source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+        source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+    fi
 fi
 
 # ve <virtualenv name> activates the virtualenv
