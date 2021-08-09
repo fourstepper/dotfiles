@@ -3,5 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = Robin Opletal
 	email = me@robinopletal.com
+[gpg]
+    program = /opt/homebrew/bin/gpg
 [includeIf "gitdir:~/workspace/work/"]
     path = ~/workspace/work/.gitconfig

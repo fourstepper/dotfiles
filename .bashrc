@@ -8,6 +8,8 @@ case $- in
       *) return;;
 esac
 
+export GPG_TTY=$(tty)
+
 # non-mac rules
 if [ "$(uname)" != "Darwin" ]; then
     # SSH agent and GPG
@@ -17,7 +19,6 @@ if [ "$(uname)" != "Darwin" ]; then
         export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
     fi
 
-    export GPG_TTY=$(tty)
     gpg-connect-agent updatestartuptty /bye >/dev/null
 
     # linux-desktop specific aliases
