@@ -39,7 +39,7 @@ fi
 ve() { source $1/bin/activate; }
 
 # source kubectl completion if kubectl is in $PATH
-if ! which kubectl &> /dev/null; then
+if which kubectl &> /dev/null; then
     source <(kubectl completion bash)
 fi
 
