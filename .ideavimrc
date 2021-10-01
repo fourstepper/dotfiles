@@ -1,0 +1,3 @@
+set ignorecase
+set relativenumber
+set nu rnu
