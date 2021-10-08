@@ -32,7 +32,10 @@ if [ "$(uname)" == "Darwin" ]; then
         # Source google-cloud-sdk components
         source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
         source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+        # bash completion v2
     fi
+    [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    BASH_COMPLETION_COMPAT_DIR="/opt/homebrew/etc/bash_completion.d"
 fi
 
 # ve <virtualenv name> activates the virtualenv
