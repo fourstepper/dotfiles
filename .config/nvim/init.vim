@@ -59,6 +59,9 @@ let g:netrw_localcopydircmd = 'cp -r'
 let g:netrw_winsize = 30
 let g:netrw_banner = 0
 
+" Don't match filenames when searching through fulltext
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
 " turn hybrid line numbers on
 set number relativenumber
 set nu rnu
