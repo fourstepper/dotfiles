@@ -52,11 +52,11 @@ export EDITOR="nvim"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # fzf command (primarily for neovim)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,**/.terragrunt-cache/**}/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules,**/.terragrunt-cache/**,**/.cache/**}/*"'
 export FZF_DEFAULT_OPTS='--bind J:down,K:up --ansi'
 
 # Add to PATH
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$HOME/.cargo/bin/:$PATH
+export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$HOME/.cargo/bin/:$HOME/workspace/.scripts:$PATH
 
 # Turn on parallel history
 shopt -s histappend
