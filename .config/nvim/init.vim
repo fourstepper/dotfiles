@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     " Terraform
         Plug 'hashivim/vim-terraform'
+        Plug 'juliosueiras/vim-terraform-completion'
 
     call plug#end()
 " -------------
@@ -48,10 +49,15 @@ set termguicolors
 set nohlsearch
 
 " Check for eight line lines
-set colorcolumn=80
+set colorcolumn=120
 
 " Use powerline fonts for the git icons to show up
 let g:airline_powerline_fonts = 1
+
+" Netrw settings
+let g:netrw_localcopydircmd = 'cp -r'
+let g:netrw_winsize = 30
+let g:netrw_banner = 0
 
 " turn hybrid line numbers on
 set number relativenumber
@@ -122,7 +128,7 @@ hi Visual guibg=#666666
 
 " ALTERNATIVE
 " colorscheme gruvbox
-"let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_dark = 'hard'
 
 " set Vim-specific sequences for RGB colors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -136,6 +142,10 @@ hi Visual guibg=#666666
 " Leader = <space>
         let mapleader = "\<Space>"
 
+    " Open netrw in the dir of the current file
+        nnoremap <leader>dd :Lexplore %:p:h<CR>
+    " Open netrw in the current workdir
+        nnoremap <Leader>da :Lexplore<CR>
     " Make new split below and switch over to it
         nnoremap <leader>w <C-w><C-s><C-w>j
     " Make new split to the right and switch over to it
@@ -164,20 +174,41 @@ hi Visual guibg=#666666
     " Use `[g` and `]g` to navigate diagnostics
         nmap <silent> [g <Plug>(coc-diagnostic-prev)
         nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
     " Mappings for switching between tmux and vim panes seamlessly
-    let g:tmux_navigator_no_mappings = 1
-    nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-    nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-    nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-    nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-    nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+        let g:tmux_navigator_no_mappings = 1
+        nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+        nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+        nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+        nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+        nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+    " Switch to current workdir of the file and print the result
+        nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+    " Netrw
+        function! NetrwMapping()
+        endfunction
+
+        augroup netrw_mapping
+          autocmd!
+          autocmd filetype netrw call NetrwMapping()
+        augroup END
+
+        function! NetrwMapping()
+          nmap <buffer> H u
+          nmap <buffer> h -^
+          nmap <buffer> l <CR>
+
+          nmap <buffer> . gh
+          nmap <buffer> P <C-w>z
+
+          nmap <buffer> L <CR>:Lexplore<CR>
+          nmap <buffer> <Leader>dd :Lexplore<CR>
+        endfunction
 
 " ##################
 " coc.vim configuration
 
 " Automatically install these extensions
-let g:coc_global_extensions = ['coc-sh', 'coc-yaml', 'coc-json', 'coc-html', 'coc-css', 'coc-toml', 'coc-pyright']
+let g:coc_global_extensions = ['coc-sh', 'coc-yaml', 'coc-json', 'coc-html', 'coc-css', 'coc-toml', 'coc-pyright', 'coc-docker']
 
 " TextEdit might fail if hidden is not set.
 set hidden
