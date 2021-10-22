@@ -16,7 +16,7 @@ end
 
 require("paq")({
         "morhetz/gruvbox",
-	"hoob3rt/lualine.nvim",
+	"nvim-lualine/lualine.nvim",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-vsnip",
@@ -148,10 +148,10 @@ require'lspconfig'.gopls.setup{}
 require'lspconfig'.dockerls.setup{}
 
 require'lspsaga'.init_lsp_saga {
-  error_sign = '',
-  warn_sign = '',
-  hint_sign = '',
-  infor_sign = '',
+  error_sign = ' ',
+  warn_sign = ' ',
+  hint_sign = '',
+  infor_sign = ' ',
   border_style = "round",
 }
 
@@ -162,6 +162,7 @@ require'nvim-treesitter.configs'.setup {
   },
   ensure_installed = {
     "python",
+    "hcl",
     "go",
     "toml",
     "json",
@@ -214,6 +215,7 @@ cmd([[
 augroup FileTypeIndent
 autocmd!
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType typescript setlocal ts=8 sw=8 noexpandtab
 augroup END
 ]])
