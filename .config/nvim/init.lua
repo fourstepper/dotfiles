@@ -18,7 +18,9 @@ require("paq")({
         "morhetz/gruvbox",
 	"nvim-lualine/lualine.nvim",
 	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-nvim-lua",
 	"hrsh7th/cmp-vsnip",
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/vim-vsnip",
@@ -71,10 +73,13 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'nvim_lua' },
+
 
     -- For vsnip user.
     { name = 'vsnip' },
-    { name = 'buffer' }
+    { name = 'buffer' },
+    { name = 'path' }
   }
 })
 
@@ -147,6 +152,13 @@ require'lspconfig'.terraformls.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.dockerls.setup{}
 
+-- hide inline diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false
+    }
+)
+
 require'lspsaga'.init_lsp_saga {
   error_sign = ' ',
   warn_sign = ' ',
@@ -184,6 +196,9 @@ require'nvim-treesitter.configs'.setup {
 -- Set proper color in Vim
 opt.termguicolors = true
 
+-- Set update time to 300ms
+opt.updatetime = 300
+
 opt.background = 'dark'
 cmd([[colorscheme gruvbox]])
 
@@ -209,8 +224,8 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.modeline = true
 opt.secure = true
---# filetype indent on
 
+-- filetype indent on
 cmd([[
 augroup FileTypeIndent
 autocmd!
