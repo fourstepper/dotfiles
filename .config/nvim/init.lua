@@ -30,8 +30,9 @@ require("paq")({
 	"nvim-telescope/telescope.nvim",
 	"nvim-treesitter/nvim-treesitter",
         "p00f/nvim-ts-rainbow",
+	"tami5/lspsaga.nvim",
+        "lukas-reineke/indent-blankline.nvim",
 	"savq/paq-nvim",
-        "glepnir/lspsaga.nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
         "tpope/vim-fugitive",
@@ -51,6 +52,11 @@ require("nvim-autopairs.completion.cmp").setup({
   map_complete = true, -- it will auto insert `(` after select function or method item
   auto_select = false, -- automatically select the first item
 })
+
+require("indent_blankline").setup {
+    char = "|",
+    buftype_exclude = {"terminal"}
+}
 
   -- Setup nvim-cmp.
 local cmp = require'cmp'
@@ -163,13 +169,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
     update_in_insert = false,
 })
 
-require'lspsaga'.init_lsp_saga {
-  error_sign = ' ',
-  warn_sign = ' ',
-  hint_sign = '',
-  infor_sign = ' ',
-  border_style = "round",
-}
+require'lspsaga'.init_lsp_saga {}
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -232,11 +232,11 @@ opt.secure = true
 -- Always see at least 15 lines ahead
 opt.scrolloff = 15
 
--- filetype indent on
 cmd([[
 augroup FileTypeIndent
 autocmd!
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType typescript setlocal ts=8 sw=8 noexpandtab
 augroup END
 ]])
