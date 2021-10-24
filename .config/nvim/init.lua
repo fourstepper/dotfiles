@@ -147,17 +147,21 @@ require('telescope').setup{
 require('telescope').load_extension('fzy_native')
 
 require'lspconfig'.bashls.setup{}
-require'lspconfig'.pyright.setup{}
 require'lspconfig'.terraformls.setup{}
+require'lspconfig'.jedi_language_server.setup{}
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.dockerls.setup{}
 
--- hide inline diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = false
-    }
-)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = {
+        prefix = "●",
+        spacing = 0,
+    },
+    signs = true,
+    underline = true,
+
+    update_in_insert = false,
+})
 
 require'lspsaga'.init_lsp_saga {
   error_sign = ' ',
@@ -224,6 +228,9 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.modeline = true
 opt.secure = true
+
+-- Always see at least 15 lines ahead
+opt.scrolloff = 15
 
 -- filetype indent on
 cmd([[
