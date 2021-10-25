@@ -152,11 +152,28 @@ require('telescope').setup{
 }
 require('telescope').load_extension('fzy_native')
 
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.terraformls.setup{}
-require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.gopls.setup{}
-require'lspconfig'.dockerls.setup{}
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+require'lspconfig'.bashls.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.terraformls.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.tflint.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.yamlls.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.jedi_language_server.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.gopls.setup{
+    capabilities = capabilities
+}
+require'lspconfig'.dockerls.setup{
+    capabilities = capabilities
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = {
@@ -232,12 +249,22 @@ opt.secure = true
 -- Always see at least 15 lines ahead
 opt.scrolloff = 15
 
+cmd([[filetype plugin indent on]])
+
 cmd([[
 augroup FileTypeIndent
 autocmd!
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType terraform setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType typescript setlocal ts=8 sw=8 noexpandtab
+augroup END
+]])
+
+-- Disable automatic comment insertion
+cmd([[
+augroup CommentInsert
+autocmd!
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 ]])
 
