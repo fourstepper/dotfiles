@@ -1,5 +1,3 @@
--- TODO: set up configuration for lualine, treesitter, lsp, nvim-cmp
-
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g -- a table to access global variables
@@ -30,7 +28,6 @@ require("paq")({
 	"nvim-telescope/telescope.nvim",
 	"nvim-treesitter/nvim-treesitter",
         "p00f/nvim-ts-rainbow",
-	"tami5/lspsaga.nvim",
         "lukas-reineke/indent-blankline.nvim",
 	"savq/paq-nvim",
 	"tpope/vim-repeat",
@@ -185,8 +182,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
     update_in_insert = false,
 })
-
-require'lspsaga'.init_lsp_saga {}
 
 require'nvim-treesitter.configs'.setup {
   highlight = {
@@ -352,18 +347,15 @@ end
     map("n", "<M-k>", ":TmuxNavigateUp<CR>", { silent = true })
     map("n", "<M-l>", ":TmuxNavigateRight<CR>", { silent = true })
     map("n", "<M-\\>", ":TmuxNavigatePrevious<CR>", { silent = true })
--- Hover doc on pressing K
-    map("n", "<K>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", { silent = true })
 -- telescope
     map("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{ hidden=true, no_ignore=true }<CR>")
     map("n", "<C-g>", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
-
--- Jump to definition
-local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  -- Mappings.
-  local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  --...
-end
+-- LSP mappings
+    map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
+    map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+    map('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
+    map('n', 'gsh', '<Cmd>lua vim.lsp.buf.signature_help()<CR>')
+    map('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
+    map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
+    map('n', 'gca', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
+    map('n', 'gn', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
