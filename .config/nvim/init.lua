@@ -279,7 +279,7 @@ opt.undoreload = 10000
 
 -- Netrw settings
 g.netrw_localcopydircmd = 'cp -r'
-g.netrw_winsize = 30
+g.netrw_winsize = 10
 g.netrw_banner = 0
 
 cmd([[
