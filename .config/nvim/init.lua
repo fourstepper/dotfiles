@@ -298,13 +298,10 @@ augroup netrw_mapping
 augroup END
 
 function! NetrwMapping()
+  nmap <buffer> . gh
   nmap <buffer> H u
   nmap <buffer> h -^
-  nmap <buffer> l <CR>
-
-  nmap <buffer> . gh
-  nmap <buffer> P <C-w>z
-
+  nmap <buffer> l <CR>:Lexplore<CR>
   nmap <buffer> L <CR>:Lexplore<CR>
   nmap <buffer> <Leader>dd :Lexplore<CR>
 endfunction
