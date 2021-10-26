@@ -75,14 +75,13 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = {
-    { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
-
+    { name = 'nvim_lsp' },
+    { name = 'path' }
 
     -- For vsnip user.
     { name = 'vsnip' },
     { name = 'buffer' },
-    { name = 'path' }
   }
 })
 
