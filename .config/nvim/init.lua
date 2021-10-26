@@ -355,6 +355,4 @@ end
     map('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>')
     map('n', 'gsh', '<Cmd>lua vim.lsp.buf.signature_help()<CR>')
     map('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
-    map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
     map('n', 'gca', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
-    map('n', 'gn', '<Cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
