@@ -77,7 +77,7 @@ cmp.setup({
   sources = {
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
-    { name = 'path' }
+    { name = 'path' },
 
     -- For vsnip user.
     { name = 'vsnip' },
