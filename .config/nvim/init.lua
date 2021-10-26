@@ -82,7 +82,11 @@ cmp.setup({
     -- For vsnip user.
     { name = 'vsnip' },
     { name = 'buffer' },
-  }
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true,
+  },
 })
 
 -- Setup lualine
