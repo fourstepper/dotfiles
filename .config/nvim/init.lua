@@ -43,8 +43,7 @@ require("paq")({
 
 
 -- Plugins config
-require("nvim-autopairs").setup({})
-require("nvim-autopairs.completion.cmp").setup({
+require("nvim-autopairs").setup({
   map_cr = true, --  map <CR> on insert mode
   map_complete = true, -- it will auto insert `(` after select function or method item
   auto_select = false, -- automatically select the first item
@@ -356,6 +355,8 @@ end
     map("n", "<leader>gs", "<cmd>lua require('telescope.builtin').grep_string()<CR>")
     map("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
     map("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
+-- Git
+    map("n", "<leader>ga", ":Git fetch --all<CR>")
 -- LSP mappings
     map('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>')
     map('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>')
