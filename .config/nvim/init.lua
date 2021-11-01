@@ -164,8 +164,23 @@ require'lspconfig'.tflint.setup{
 require'lspconfig'.yamlls.setup{
     capabilities = capabilities
 }
-require'lspconfig'.jedi_language_server.setup{
-    capabilities = capabilities
+-- require'lspconfig'.jedi_language_server.setup{
+--     capabilities = capabilities
+-- }
+require'lspconfig'.pylsp.setup {
+    capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    settings = {
+        pylsp = {
+            plugins = {
+                jedi_completion = {
+                    include_params = true,
+                },
+                pycodestyle = {
+                    maxLineLength = 120,
+                }
+            },
+        },
+    },
 }
 require'lspconfig'.gopls.setup{
     capabilities = capabilities
