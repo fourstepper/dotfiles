@@ -29,6 +29,7 @@ require("paq")({
 	"nvim-treesitter/nvim-treesitter",
         "p00f/nvim-ts-rainbow",
         "lukas-reineke/indent-blankline.nvim",
+        "lukas-reineke/format.nvim",
 	"savq/paq-nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
@@ -53,6 +54,26 @@ require("indent_blankline").setup {
     char = "|",
     buftype_exclude = {"terminal"}
 }
+
+require("format").setup {
+    ["*"] = {
+        {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
+    },
+    terraform = {
+        {cmd = {"terraform fmt"}}
+    },
+    hcl = {
+        {cmd = {"terragrunt hclfmt"}}
+    }
+}
+
+-- Call format.nvim on save
+cmd([[
+augroup Format
+    autocmd!
+    autocmd BufWritePost * FormatWrite
+augroup END
+]])
 
   -- Setup nvim-cmp.
 local cmp = require'cmp'
@@ -319,14 +340,6 @@ function! NetrwMapping()
 endfunction
 ]])
 
--- Remove trailing whitespaces
-cmd([[
-augroup RemoveTrailing
-autocmd!
-autocmd BufWritePre * :%s/\s\+$//e
-augroup END
-]])
-
 -- KEYBINDINGS
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
@@ -355,8 +368,8 @@ end
     map("n", "<leader>ave", ":AnsibleVault <CR>", { silent = true })
     map("n", "<leader>avd", ":AnsibleUnvault <CR>", { silent = true })
 -- Git merge resolution
-    map("n", "<leader>gj", ":diffgett //3")
-    map("n", "<leader>gf", ":diffgett //2")
+    map("n", "<leader>gj", ":diffget //3<CR>")
+    map("n", "<leader>gf", ":diffget //2<CR>")
 -- Tmux mappings for switching between nvim and tmux seamlessly
     g.tmux_navigator_no_mappings = '1'
     map("n", "<M-h>", ":TmuxNavigateLeft<CR>", { silent = true })
