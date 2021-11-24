@@ -34,12 +34,12 @@ require("paq")({
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
         "tpope/vim-fugitive",
-        "tpope/vim-commentary",
         "airblade/vim-gitgutter",
 	"wellle/targets.vim",
 	"windwp/nvim-autopairs",
         "christoomey/vim-tmux-navigator",
-        "arouene/vim-ansible-vault"
+        "arouene/vim-ansible-vault",
+        "numToStr/Comment.nvim"
 })
 
 
@@ -49,6 +49,8 @@ require("nvim-autopairs").setup({
   map_complete = true, -- it will auto insert `(` after select function or method item
   auto_select = false, -- automatically select the first item
 })
+
+require('Comment').setup()
 
 require("indent_blankline").setup {
     char = "|",
