@@ -30,7 +30,6 @@ require("paq")({
         "p00f/nvim-ts-rainbow",
         "lukas-reineke/indent-blankline.nvim",
         "lukas-reineke/format.nvim",
-        "lukas-reineke/cmp-rg",
 	"savq/paq-nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
@@ -101,7 +100,6 @@ cmp.setup({
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
     { name = 'path' },
-    { name = 'rg' },
 
     -- For vsnip user.
     { name = 'vsnip' },
