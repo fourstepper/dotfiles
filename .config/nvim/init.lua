@@ -29,7 +29,7 @@ require("paq")({
 	"nvim-treesitter/nvim-treesitter",
         "p00f/nvim-ts-rainbow",
         "lukas-reineke/indent-blankline.nvim",
-        "lukas-reineke/format.nvim",
+        "mhartington/formatter.nvim",
 	"savq/paq-nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
@@ -57,23 +57,42 @@ require("indent_blankline").setup {
     buftype_exclude = {"terminal"}
 }
 
-require("format").setup {
-    ["*"] = {
-        {cmd = {"sed -i 's/[ \t]*$//'"}} -- remove trailing whitespace
-    },
+require("formatter").setup({
+  filetype = {
     terraform = {
-        {cmd = {"terraform fmt"}}
+      function()
+        return {
+          exe = "terraform",
+          args = { "fmt"},
+          stdin = false
+        }
+      end
     },
     hcl = {
-        {cmd = {"terragrunt hclfmt"}}
+      function()
+        return {
+          exe = "terragrunt",
+          args = { "hclfmt"},
+          stdin = false
+        }
+      end
     }
-}
+  }
+})
 
 -- Call format.nvim on save
 cmd([[
 augroup Format
     autocmd!
-    autocmd BufWritePost * FormatWrite
+    autocmd BufWritePost *.hcl,*.tf FormatWrite
+augroup END
+]])
+
+cmd([[
+augroup TrimTrailingWhiteSpace
+    au!
+    au BufWritePre * %s/\s\+$//e
+    au BufWritePre * %s/\n\+\%$//e
 augroup END
 ]])
 
@@ -127,7 +146,7 @@ lualine.setup {
     lualine_b = {'branch'},
     lualine_c = {'filename'},
     lualine_x = {
-      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      { 'diagnostics', sources = {"nvim_diagnostic"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
       'encoding',
       'filetype'
     },
