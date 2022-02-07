@@ -7,3 +7,5 @@
     program = /opt/homebrew/bin/gpg
 [includeIf "gitdir:~/workspace/work/"]
     path = ~/workspace/work/.gitconfig
+[core]
+	excludesfile = /Users/robin.opletal/.gitignore_global
