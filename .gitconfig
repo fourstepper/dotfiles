@@ -9,3 +9,5 @@
     path = ~/workspace/work/.gitconfig
 [core]
 	excludesfile = /Users/robin.opletal/.gitignore_global
+[push]
+	default = current
