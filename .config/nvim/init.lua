@@ -5,6 +5,9 @@ local opt = vim.opt -- to set options
 local fn = vim.fn
 
 g.mapleader = " "
+vim.opt.mouse = "a"
+-- set transparency of the pop-up window
+vim.opt.pumblend = 25
 
 -- Bootstrap Paq when needed
 local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
@@ -64,6 +67,18 @@ require("formatter").setup({
         return {
           exe = "terraform",
           args = { "fmt"},
+          stdin = false
+        }
+      end
+    },
+    python = {
+      function()
+        return {
+          exe = "python3 -m autopep8",
+          args = {
+            "--in-place --aggressive --aggressive",
+            vim.fn.fnameescape(vim.api.nvim_buf_get_name(0))
+          },
           stdin = false
         }
       end
@@ -189,7 +204,8 @@ require('telescope').setup{
         ".git",
         "node_modules",
         ".terragrunt-cache",
-        ".cache"
+        ".cache",
+        "__pycache__"
     }
   }
 }
