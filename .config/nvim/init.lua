@@ -233,9 +233,6 @@ require'lspconfig'.tflint.setup{
 require'lspconfig'.yamlls.setup{
     capabilities = capabilities
 }
--- require'lspconfig'.jedi_language_server.setup{
---     capabilities = capabilities
--- }
 require'lspconfig'.pylsp.setup {
     capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     settings = {
@@ -259,13 +256,13 @@ require'lspconfig'.dockerls.setup{
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = {
-        prefix = "●",
-        spacing = 0,
-    },
+    -- virtual_text = {
+    --     prefix = "●",
+    --     spacing = 5,
+    -- },
+    virtual_text = false,
     signs = true,
     underline = true,
-
     update_in_insert = false,
 })
 
@@ -440,3 +437,5 @@ end
     map('n', 'gsh', '<Cmd>lua vim.lsp.buf.signature_help()<CR>')
     map('n', 'gr', '<Cmd>lua vim.lsp.buf.references()<CR>')
     map('n', 'gca', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
+-- Diagnostics
+    map('n', '<leader>sd', '<Cmd>lua vim.diagnostic.open_float()<CR>')
