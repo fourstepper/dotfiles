@@ -73,7 +73,7 @@ shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=2000
-HISTFILESIZE=10000
+HISTFILESIZE=15000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -137,11 +137,9 @@ fi
 alias h="history -20"
 alias vim='nvim'
 alias v='nvim'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-# Khal alias
-alias worknew='khal new -a work'
-alias ownnew='khal new -a personal'
+alias cds='cd ~/workspace/'
+alias cdw='cd ~/workspace/work/'
+alias cdp='cd ~/workspace/personal/'
 alias randompass='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;'
 alias aerc='mkdir -p ~/.log/aerc && aerc > ~/.log/aerc/aerc.log'
 

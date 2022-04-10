@@ -27,8 +27,10 @@ require("paq")({
 	"hrsh7th/vim-vsnip",
 	"neovim/nvim-lspconfig",
         "nvim-lua/plenary.nvim",
-	"nvim-telescope/telescope-fzy-native.nvim",
 	"nvim-telescope/telescope.nvim",
+        "tami5/sqlite.lua",
+	"nvim-telescope/telescope-fzy-native.nvim",
+	"nvim-telescope/telescope-smart-history.nvim",
 	"nvim-treesitter/nvim-treesitter",
         "p00f/nvim-ts-rainbow",
         "lukas-reineke/indent-blankline.nvim",
@@ -205,10 +207,17 @@ require('telescope').setup{
         "node_modules",
         ".terragrunt-cache",
         ".cache",
-        "__pycache__"
+        "__pycache__",
+        "undo"
+
+    },
+    history = {
+      path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+      limit = 100,
     }
   }
 }
+
 require('telescope').load_extension('fzy_native')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
