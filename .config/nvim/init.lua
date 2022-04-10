@@ -242,7 +242,8 @@ require'lspconfig'.pylsp.setup {
                     include_params = true,
                 },
                 pycodestyle = {
-                    maxLineLength = 120,
+                    -- ignore max line length
+                    ignore = {'E501'},
                 }
             },
         },
