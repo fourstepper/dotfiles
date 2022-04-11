@@ -7,7 +7,7 @@ local fn = vim.fn
 g.mapleader = " "
 vim.opt.mouse = "a"
 -- set transparency of the pop-up window
-vim.opt.pumblend = 25
+vim.opt.pumblend = 20
 
 -- Bootstrap Paq when needed
 local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
@@ -35,6 +35,8 @@ require("paq")({
         "p00f/nvim-ts-rainbow",
         "lukas-reineke/indent-blankline.nvim",
         "mhartington/formatter.nvim",
+        "kyazdani42/nvim-web-devicons",
+        "kyazdani42/nvim-tree.lua",
 	"savq/paq-nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-surround",
@@ -49,6 +51,9 @@ require("paq")({
 
 
 -- Plugins config
+require'nvim-tree'.setup {
+}
+
 require("nvim-autopairs").setup({
   map_cr = true, --  map <CR> on insert mode
   map_complete = true, -- it will auto insert `(` after select function or method item
@@ -367,30 +372,6 @@ opt.undodir = vim.fn.stdpath("config") .. "/undo"
 opt.undolevels = 1000
 opt.undoreload = 10000
 
--- Netrw settings
-g.netrw_localcopydircmd = 'cp -r'
-g.netrw_winsize = 10
-g.netrw_banner = 0
-
-cmd([[
-function! NetrwMapping()
-endfunction
-
-augroup netrw_mapping
-  autocmd!
-  autocmd filetype netrw call NetrwMapping()
-augroup END
-
-function! NetrwMapping()
-  nmap <buffer> . gh
-  nmap <buffer> H u
-  nmap <buffer> h -^
-  nmap <buffer> l <CR>:Lexplore<CR>
-  nmap <buffer> L <CR>:Lexplore<CR>
-  nmap <buffer> <Leader>dd :Lexplore<CR>
-endfunction
-]])
-
 -- KEYBINDINGS
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true }
@@ -402,10 +383,8 @@ end
 
 -- Make Y yank to end of the line
     map("n", "Y", "y$")
--- Open netrw in the dir of the current file
-    map("n", "<leader>dd", ":Lexplore %:p:h<CR>", { silent = true })
--- Open netrw in the current workdir
-    map("n", "<leader>da", ":Lexplore <CR>", { silent = true })
+-- Open nvimtree
+    map('n', '<C-n>', ':NvimTreeToggle<CR>')
 -- Make new horizontal split and switch over to it
     map("n", "<leader>w", "<C-w><C-s><C-w>j")
 -- Make new vertical split and switch over to it
