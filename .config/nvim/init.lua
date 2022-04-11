@@ -5,9 +5,9 @@ local opt = vim.opt -- to set options
 local fn = vim.fn
 
 g.mapleader = " "
-vim.opt.mouse = "a"
+opt.mouse = "a"
 -- set transparency of the pop-up window
-vim.opt.pumblend = 20
+opt.pumblend = 20
 
 -- Bootstrap Paq when needed
 local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
@@ -17,6 +17,7 @@ end
 
 require("paq")({
         "morhetz/gruvbox",
+        "NLKNguyen/papercolor-theme",
 	"nvim-lualine/lualine.nvim",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
@@ -51,7 +52,11 @@ require("paq")({
 
 
 -- Plugins config
+local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require'nvim-tree'.setup {
+  view = {
+    mappings = {}
+  }
 }
 
 require("nvim-autopairs").setup({
@@ -158,7 +163,7 @@ if (not status) then return end
 lualine.setup {
   options = {
     icons_enabled = true,
-    theme = 'gruvbox',
+    theme = 'PaperColor',
     section_separators = {'', ''},
     component_separators = {'', ''},
     disabled_filetypes = {}
@@ -204,7 +209,12 @@ require('telescope').setup{
     },
     mappings = {
       n = {
-        ["q"] = require('telescope.actions').close
+	["<C-j>"] = require('telescope.actions').cycle_history_prev,
+	["<C-k>"] = require('telescope.actions').cycle_history_next,
+        ["<C-c>"] = function()
+          vim.cmd [[stopinsert]]
+        end,
+	["<esc>"] = require('telescope.actions').close,
       },
     },
     file_ignore_patterns = {
@@ -217,11 +227,13 @@ require('telescope').setup{
 
     },
     history = {
-      path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+      path = '~/.local/share/nvim/telescope_history.sqlite3',
       limit = 100,
     }
   }
 }
+
+require('telescope').load_extension('smart_history')
 
 require('telescope').load_extension('fzy_native')
 
@@ -309,8 +321,8 @@ opt.termguicolors = true
 -- Set update time to 300ms
 opt.updatetime = 300
 
-opt.background = 'dark'
-cmd([[colorscheme gruvbox]])
+opt.background = 'light'
+cmd([[colorscheme PaperColor]])
 
 -- Set no highlight after search ends
 opt.hlsearch = false
