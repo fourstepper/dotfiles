@@ -422,6 +422,7 @@ end
 -- telescope
     map("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{ hidden=true, no_ignore=true }<CR>")
     map("n", "<C-g>", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
+    map("n", "<C-h>", "<cmd>lua require('telescope.builtin').command_history()<CR>")
     map("n", "<leader>gs", "<cmd>lua require('telescope.builtin').grep_string()<CR>")
     map("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
     map("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
