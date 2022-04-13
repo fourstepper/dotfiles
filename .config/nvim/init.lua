@@ -397,6 +397,7 @@ end
     map("n", "Y", "y$")
 -- Open nvimtree
     map('n', '<C-n>', ':NvimTreeToggle<CR>')
+    map('n', '<C-m>', ':NvimTreeFindFileToggle<CR>')
 -- Make new horizontal split and switch over to it
     map("n", "<leader>w", "<C-w><C-s><C-w>j")
 -- Make new vertical split and switch over to it
