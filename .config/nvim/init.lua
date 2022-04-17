@@ -36,7 +36,6 @@ require("paq")({
         "p00f/nvim-ts-rainbow",
         "lukas-reineke/indent-blankline.nvim",
         "mhartington/formatter.nvim",
-        "kyazdani42/nvim-web-devicons",
         "kyazdani42/nvim-tree.lua",
 	"savq/paq-nvim",
 	"tpope/vim-repeat",
