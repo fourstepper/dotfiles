@@ -207,13 +207,13 @@ require('telescope').setup{
         "-u"
     },
     mappings = {
-      n = {
+      i = {
 	["<C-j>"] = require('telescope.actions').cycle_history_prev,
 	["<C-k>"] = require('telescope.actions').cycle_history_next,
         ["<C-c>"] = function()
           vim.cmd [[stopinsert]]
         end,
-	["<esc>"] = require('telescope.actions').close,
+        ['<esc>'] = 'close',
       },
     },
     file_ignore_patterns = {
@@ -395,8 +395,8 @@ end
 -- Make Y yank to end of the line
     map("n", "Y", "y$")
 -- Open nvimtree
-    map('n', '<C-n>', ':NvimTreeToggle<CR>')
-    map('n', '<C-m>', ':NvimTreeFindFileToggle<CR>')
+    map('n', '<leader>n', ':NvimTreeToggle<CR>')
+    map('n', '<leader>m', ':NvimTreeFindFileToggle<CR>')
 -- Make new horizontal split and switch over to it
     map("n", "<leader>w", "<C-w><C-s><C-w>j")
 -- Make new vertical split and switch over to it
