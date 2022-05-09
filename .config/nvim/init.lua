@@ -8,6 +8,7 @@ g.mapleader = " "
 opt.mouse = "a"
 -- set transparency of the pop-up window
 opt.pumblend = 20
+opt.clipboard = "unnamedplus"
 
 -- Bootstrap Paq when needed
 local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
