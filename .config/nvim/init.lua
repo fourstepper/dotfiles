@@ -224,6 +224,18 @@ cmp.setup({
           "s",
         }),
   },
+  formatting = {
+    fields = { "abbr", "menu" },
+    format = function(entry, vim_item)
+      vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        luasnip = "[Snippet]",
+        buffer = "[Buffer]",
+        path = "[Path]",
+      })[entry.source.name]
+      return vim_item
+    end,
+  },
   sources = {
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },
