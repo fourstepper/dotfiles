@@ -24,7 +24,6 @@ require("paq")({
 	"hrsh7th/cmp-path",
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/cmp-vsnip",
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/vim-vsnip",
 	"neovim/nvim-lspconfig",
@@ -180,8 +179,8 @@ cmp.setup({
     end,
   },
   mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<Tab>'] = cmp.mapping.select_next_item(),
+        ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
