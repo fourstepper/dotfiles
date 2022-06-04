@@ -16,37 +16,38 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require("paq")({
-        "morhetz/gruvbox",
-        "NLKNguyen/papercolor-theme",
-	"nvim-lualine/lualine.nvim",
-	"hrsh7th/cmp-buffer",
-	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua",
-	"hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-	"neovim/nvim-lspconfig",
-        "nvim-lua/plenary.nvim",
-	"nvim-telescope/telescope.nvim",
-        "tami5/sqlite.lua",
-	"nvim-telescope/telescope-fzy-native.nvim",
-	"nvim-telescope/telescope-smart-history.nvim",
-	"nvim-treesitter/nvim-treesitter",
-        "p00f/nvim-ts-rainbow",
-        "lukas-reineke/indent-blankline.nvim",
-        "mhartington/formatter.nvim",
-        "kyazdani42/nvim-tree.lua",
-	"savq/paq-nvim",
-	"tpope/vim-repeat",
-	"tpope/vim-surround",
-        "tpope/vim-fugitive",
-        "lewis6991/gitsigns.nvim",
-	"wellle/targets.vim",
-	"windwp/nvim-autopairs",
-        "christoomey/vim-tmux-navigator",
-        "arouene/vim-ansible-vault",
-        "numToStr/Comment.nvim"
+        { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end };
+        "morhetz/gruvbox";
+        "NLKNguyen/papercolor-theme";
+	"nvim-lualine/lualine.nvim";
+	"hrsh7th/cmp-buffer";
+	"hrsh7th/cmp-path";
+	"hrsh7th/cmp-nvim-lsp";
+	"hrsh7th/cmp-nvim-lua";
+	"hrsh7th/nvim-cmp";
+        "L3MON4D3/LuaSnip";
+        "saadparwaiz1/cmp_luasnip";
+	"neovim/nvim-lspconfig";
+        "nvim-lua/plenary.nvim";
+	"nvim-telescope/telescope.nvim";
+        "tami5/sqlite.lua";
+	"nvim-telescope/telescope-fzy-native.nvim";
+	"nvim-telescope/telescope-smart-history.nvim";
+	"nvim-treesitter/nvim-treesitter";
+        "p00f/nvim-ts-rainbow";
+        "lukas-reineke/indent-blankline.nvim";
+        "mhartington/formatter.nvim";
+        "kyazdani42/nvim-tree.lua";
+	"savq/paq-nvim";
+	"tpope/vim-repeat";
+	"tpope/vim-surround";
+        "tpope/vim-fugitive";
+        "lewis6991/gitsigns.nvim";
+	"wellle/targets.vim";
+	"windwp/nvim-autopairs";
+        "christoomey/vim-tmux-navigator";
+        "arouene/vim-ansible-vault";
+        "numToStr/Comment.nvim";
 })
 
 
@@ -529,3 +530,5 @@ end
     map('n', 'gca', '<Cmd>lua vim.lsp.buf.code_action()<CR>')
 -- Diagnostics
     map('n', '<leader>sd', '<Cmd>lua vim.diagnostic.open_float()<CR>')
+-- Markdown Preview
+    map('n', '<leader>mp', ':MarkdownPreview<CR>')
