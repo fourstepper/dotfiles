@@ -1,55 +1,13 @@
+require "user.global"
+require "user.options"
+require "user.plugins"
+require "user.colorscheme"
+require "user.autopairs"
+
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
-local g = vim.g -- a table to access global variables
-local opt = vim.opt -- to set options
 
-g.mapleader = " "
-opt.mouse = "a"
 -- set transparency of the pop-up window
-opt.pumblend = 5
-opt.clipboard = "unnamedplus"
-
--- Bootstrap Paq when needed
-local install_path = fn.stdpath("data") .. "/site/pack/paqs/start/paq-nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({ "git", "clone", "--depth=1", "https://github.com/savq/paq-nvim.git", install_path })
-end
-
-require("paq")({
-        { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end };
-        "morhetz/gruvbox";
-        "NLKNguyen/papercolor-theme";
-	"nvim-lualine/lualine.nvim";
-	"hrsh7th/cmp-buffer";
-	"hrsh7th/cmp-path";
-	"hrsh7th/cmp-nvim-lsp";
-	"hrsh7th/cmp-nvim-lua";
-	"hrsh7th/nvim-cmp";
-        "L3MON4D3/LuaSnip";
-        "saadparwaiz1/cmp_luasnip";
-	"neovim/nvim-lspconfig";
-        "nvim-lua/plenary.nvim";
-	"nvim-telescope/telescope.nvim";
-        "tami5/sqlite.lua";
-	"nvim-telescope/telescope-fzy-native.nvim";
-	"nvim-telescope/telescope-smart-history.nvim";
-	"nvim-treesitter/nvim-treesitter";
-        "p00f/nvim-ts-rainbow";
-        "lukas-reineke/indent-blankline.nvim";
-        "mhartington/formatter.nvim";
-        "kyazdani42/nvim-tree.lua";
-	"savq/paq-nvim";
-	"tpope/vim-repeat";
-	"tpope/vim-surround";
-        "tpope/vim-fugitive";
-        "lewis6991/gitsigns.nvim";
-	"wellle/targets.vim";
-	"windwp/nvim-autopairs";
-        "christoomey/vim-tmux-navigator";
-        "arouene/vim-ansible-vault";
-        "numToStr/Comment.nvim";
-})
-
 
 -- Plugins config
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
@@ -61,12 +19,6 @@ require'nvim-tree'.setup {
     relativenumber = true
   }
 }
-
-require("nvim-autopairs").setup({
-  map_cr = true, --  map <CR> on insert mode
-  map_complete = true, -- it will auto insert `(` after select function or method item
-  auto_select = false, -- automatically select the first item
-})
 
 require('Comment').setup()
 
@@ -407,41 +359,6 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
--- Set proper color in Vim
-opt.termguicolors = true
-
--- Set update time to 300ms
-opt.updatetime = 300
-
-opt.background = 'light'
-cmd([[colorscheme PaperColor]])
-
--- Set no highlight after search ends
-opt.hlsearch = false
-
--- turn hybrid line numbers on
-opt.number = true
-opt.relativenumber = true
-
--- Check for eight line lines
-opt.colorcolumn = '120'
-
--- Search
-opt.incsearch = true
-opt.ignorecase = true
-opt.smartcase = true
-
--- Tab stuff
-opt.tabstop = 8
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.softtabstop = 4
-opt.modeline = true
-opt.secure = true
-
--- Always see at least 15 lines ahead
-opt.scrolloff = 15
-
 cmd([[filetype plugin indent on]])
 
 cmd([[
@@ -460,21 +377,6 @@ autocmd!
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 augroup END
 ]])
-
--- Provides tab completion for all file related tasks
-opt.path = '**'
-
--- Display all matching files during the auto completion process
-opt.wildmenu = true
-
--- Show leaderkey command
-opt.showcmd = true
-
--- Undo history!
-opt.undofile = true
-opt.undodir = vim.fn.stdpath("config") .. "/undo"
-opt.undolevels = 1000
-opt.undoreload = 10000
 
 -- KEYBINDINGS
 local function map(mode, lhs, rhs, opts)
@@ -506,7 +408,6 @@ end
     map("n", "<leader>gj", ":diffget //3<CR>")
     map("n", "<leader>gf", ":diffget //2<CR>")
 -- Tmux mappings for switching between nvim and tmux seamlessly
-    g.tmux_navigator_no_mappings = '1'
     map("n", "<M-h>", ":TmuxNavigateLeft<CR>", { silent = true })
     map("n", "<M-j>", ":TmuxNavigateDown<CR>", { silent = true })
     map("n", "<M-k>", ":TmuxNavigateUp<CR>", { silent = true })
@@ -531,4 +432,4 @@ end
 -- Diagnostics
     map('n', '<leader>sd', '<Cmd>lua vim.diagnostic.open_float()<CR>')
 -- Markdown Preview
-    map('n', '<leader>mp', ':MarkdownPreview<CR>')
+    -- map('n', '<leader>mp', ':MarkdownPreview<CR>')
