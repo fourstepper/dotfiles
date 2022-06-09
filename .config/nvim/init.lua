@@ -1,8 +1,8 @@
-require "user.global"
-require "user.options"
-require "user.plugins"
-require "user.colorscheme"
-require "user.autopairs"
+require "global"
+require "options"
+require "plugins"
+require "colorscheme"
+require "autopairs"
 
 local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
