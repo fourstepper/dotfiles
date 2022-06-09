@@ -1,2 +1,2 @@
-require "user.lsp.config"
-require "user.lsp.handlers"
+require("fs.lsp.config")
+require("fs.lsp.handlers")
