@@ -47,7 +47,8 @@ keymap("n", "<leader>gs", "<cmd>lua require('telescope.builtin').grep_string()<C
 keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
 keymap("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
 -- Git
-keymap("n", "<leader>ga", ":Git fetch --all<CR>")
+keymap("n", "<leader>ga", ":G ")
+keymap("n", "<leader>gg", ":G<CR>")
 -- LSP mappings
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")

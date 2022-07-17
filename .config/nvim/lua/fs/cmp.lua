@@ -10,6 +10,8 @@ if not snip_status_ok then
 	return
 end
 
+require("luasnip.loaders.from_vscode").load()
+
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
@@ -62,6 +64,7 @@ cmp.setup({
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
+				nvim_lua = "[Neovim]",
 				buffer = "[Buffer]",
 				path = "[Path]",
 			})[entry.source.name]
@@ -69,11 +72,12 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lua" },
-		{ name = "nvim_lsp" },
-		{ name = "path" },
 		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		{ name = "orgmode" },
 		{ name = "buffer" },
+		{ name = "path" },
 	},
 	experimental = {
 		native_menu = false,

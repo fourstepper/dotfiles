@@ -32,7 +32,7 @@ require("formatter").setup({
 				return {
 					-- remove trailing whitespace
 					exe = "sed",
-					args = { "-i", "'s/[ \t]*$//'" },
+					args = { "-i", "''", "'s/[	 ]*$//'" },
 					stdin = false,
 				}
 			end,

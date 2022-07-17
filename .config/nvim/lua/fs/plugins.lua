@@ -36,6 +36,7 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
+	use("nvim-orgmode/orgmode")
 	use("morhetz/gruvbox")
 	use("NLKNguyen/papercolor-theme")
 	use("nvim-lualine/lualine.nvim")
@@ -72,6 +73,7 @@ return packer.startup(function(use)
 	use("arouene/vim-ansible-vault")
 	use("mfussenegger/nvim-dap")
 	use("numToStr/Comment.nvim")
+	use("rafamadriz/friendly-snippets")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
