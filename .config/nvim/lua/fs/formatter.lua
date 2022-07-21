@@ -4,8 +4,8 @@ require("formatter").setup({
 			function()
 				return {
 					exe = "terraform",
-					args = { "fmt" },
-					stdin = false,
+					args = { "fmt", "-" },
+					stdin = true,
 				}
 			end,
 		},
