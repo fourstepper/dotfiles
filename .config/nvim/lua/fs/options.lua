@@ -10,6 +10,7 @@ end
 local options = {
 	mouse = "a",
 	pumblend = 5,
+	pumheight = 3,
 	clipboard = "unnamedplus",
 	termguicolors = true,
 	updatetime = 300,
