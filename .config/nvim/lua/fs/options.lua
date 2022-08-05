@@ -10,8 +10,9 @@ end
 local options = {
 	mouse = "a",
 	pumblend = 5,
-	pumheight = 3,
+	-- pumheight = 3,
 	clipboard = "unnamedplus",
+	linebreak = true,
 	termguicolors = true,
 	updatetime = 300,
 	background = "light",
