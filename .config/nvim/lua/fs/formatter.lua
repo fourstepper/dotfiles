@@ -27,6 +27,9 @@ require("formatter").setup({
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
+		-- yaml = {
+		-- 	require("formatter.filetypes.yaml").prettier,
+		-- },
 		["*"] = {
 			function()
 				return {
