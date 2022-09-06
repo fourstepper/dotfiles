@@ -3,7 +3,9 @@ require("nvim-tree").setup({
 	view = {
 		mappings = {},
 		-- sets relativenumber current cursor to number
+		side = "left",
 		number = true,
 		relativenumber = true,
+		adaptive_size = true,
 	},
 })
