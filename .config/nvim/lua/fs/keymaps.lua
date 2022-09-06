@@ -58,3 +58,13 @@ keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
 keymap("n", "gca", "<Cmd>lua vim.lsp.buf.code_action()<CR>")
 -- Diagnostics
 keymap("n", "<leader>sd", "<Cmd>lua vim.diagnostic.open_float()<CR>")
+-- Debugging
+keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
+keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
+keymap("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>")
+keymap("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>")
+keymap("n", "<leader>b", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
+keymap("n", "<leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+keymap("n", "<leader>lp", "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
+keymap("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>")
+keymap("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>")
