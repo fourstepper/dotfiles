@@ -68,3 +68,4 @@ keymap("n", "<leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Bre
 keymap("n", "<leader>lp", "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
 keymap("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>")
 keymap("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>")
+keymap("n", "<leader>dq", "<Cmd>lua require'dap'.terminate()<CR>")
