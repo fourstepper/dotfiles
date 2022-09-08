@@ -76,7 +76,6 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-		{ name = "orgmode" },
 		{ name = "path" },
 	},
 	view = {

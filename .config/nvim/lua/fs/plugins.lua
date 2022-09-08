@@ -36,7 +36,6 @@ return packer.startup(function(use)
 			vim.fn["mkdp#util#install"]()
 		end,
 	})
-	use("nvim-orgmode/orgmode")
 	use("morhetz/gruvbox")
 	use("NLKNguyen/papercolor-theme")
 	use("nvim-lualine/lualine.nvim")

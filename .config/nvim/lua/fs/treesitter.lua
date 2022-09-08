@@ -6,8 +6,6 @@ end
 treesitter_configs.setup({
 	highlight = {
 		enable = true,
-		disable = { "org" },
-		additional_vim_regex_highlighting = { "org" },
 	},
 	ensure_installed = "all",
 	ignore_install = { "phpdoc" },
