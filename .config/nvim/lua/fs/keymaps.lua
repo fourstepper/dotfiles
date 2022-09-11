@@ -16,6 +16,8 @@ end
 
 -- Make Y yank to end of the line
 keymap("n", "Y", "y$")
+-- Don't lose paste content when replacing something
+keymap("x", "<leader>p", '"_dP')
 -- Open nvimtree
 keymap("n", "<leader>n", ":NvimTreeToggle<CR>")
 keymap("n", "<leader>m", ":NvimTreeFindFileToggle<CR>")
