@@ -51,6 +51,7 @@ keymap("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<
 -- Git
 keymap("n", "<leader>ga", ":tab G<CR>")
 keymap("n", "<leader>gg", ":G<CR>")
+keymap("n", "<leader>gs", "<Cmd>lua require('neogit').open()<CR>")
 -- LSP mappings
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")

@@ -65,6 +65,10 @@ return packer.startup(function(use)
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
 	use("tpope/vim-fugitive")
+	use({
+		"TimUntersberger/neogit",
+		requires = "nvim-lua/plenary.nvim",
+	})
 	use("lewis6991/gitsigns.nvim")
 	use("wellle/targets.vim")
 	use("windwp/nvim-autopairs")
