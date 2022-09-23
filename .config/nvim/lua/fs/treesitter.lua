@@ -26,6 +26,10 @@ end
 
 ts_context.setup({
 	patterns = {
-		terraform = { "block" },
+		terraform = {
+			"block",
+			"object_elem",
+			"attribute",
+		},
 	},
 })
