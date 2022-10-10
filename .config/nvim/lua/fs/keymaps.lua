@@ -33,6 +33,7 @@ keymap("n", "<M-h>", "<C-W><C-H>", { silent = true })
 -- Ansible-vault-inline to ,v
 keymap("n", "<leader>ave", ":AnsibleVault <CR>", { silent = true })
 keymap("n", "<leader>avd", ":AnsibleUnvault <CR>", { silent = true })
+-- Harpoon
 -- Git merge resolution
 keymap("n", "<leader>gj", ":diffget //3<CR>")
 keymap("n", "<leader>gf", ":diffget //2<CR>")

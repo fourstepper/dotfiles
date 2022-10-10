@@ -15,9 +15,6 @@ require("telescope").setup({
 			i = {
 				["<C-j>"] = require("telescope.actions").cycle_history_prev,
 				["<C-k>"] = require("telescope.actions").cycle_history_next,
-				["<C-c>"] = function()
-					vim.cmd([[stopinsert]])
-				end,
 				["<esc>"] = "close",
 			},
 		},
@@ -26,6 +23,7 @@ require("telescope").setup({
 			"node_modules",
 			".terragrunt-cache.*",
 			".cache.*",
+			"venv",
 			"__pycache__",
 			"undo",
 		},
@@ -38,4 +36,4 @@ require("telescope").setup({
 
 require("telescope").load_extension("smart_history")
 
-require("telescope").load_extension("fzy_native")
+require("telescope").load_extension("fzf")

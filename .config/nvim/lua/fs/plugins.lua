@@ -50,8 +50,13 @@ return packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
+	use("ThePrimeagen/harpoon")
 	use("tami5/sqlite.lua")
 	use("nvim-telescope/telescope-fzy-native.nvim")
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+	})
 	use("nvim-telescope/telescope-smart-history.nvim")
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -72,6 +77,7 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("wellle/targets.vim")
 	use("windwp/nvim-autopairs")
+	use("gaoDean/autolist.nvim")
 	use("christoomey/vim-tmux-navigator")
 	use("arouene/vim-ansible-vault")
 	use("numToStr/Comment.nvim")
