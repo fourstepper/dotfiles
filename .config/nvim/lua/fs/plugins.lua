@@ -53,10 +53,6 @@ return packer.startup(function(use)
 	use("ThePrimeagen/harpoon")
 	use("tami5/sqlite.lua")
 	use("nvim-telescope/telescope-fzy-native.nvim")
-	use({
-		"nvim-telescope/telescope-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-	})
 	use("nvim-telescope/telescope-smart-history.nvim")
 	use({
 		"nvim-treesitter/nvim-treesitter",
