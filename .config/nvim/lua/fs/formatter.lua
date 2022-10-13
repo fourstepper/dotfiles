@@ -31,14 +31,7 @@ require("formatter").setup({
 		-- 	require("formatter.filetypes.yaml").prettier,
 		-- },
 		["*"] = {
-			function()
-				return {
-					-- remove trailing whitespace
-					exe = "sed",
-					args = { "-i", "''", "'s/[	 ]*$//'" },
-					stdin = false,
-				}
-			end,
+			require("formatter.filetypes.any").remove_trailing_whitespace,
 		},
 	},
 })
