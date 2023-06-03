@@ -48,6 +48,7 @@ keymap("n", "<C-g>", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 keymap("n", "<C-h>", "<cmd>lua require('telescope.builtin').command_history()<CR>")
 keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
 keymap("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
+keymap("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
 -- Git
 keymap("n", "<leader>gg", ":G<CR>")
 keymap("n", "<leader>ga", ":G ")

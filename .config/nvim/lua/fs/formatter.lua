@@ -12,9 +12,9 @@ require("formatter").setup({
 		hcl = {
 			function()
 				return {
-					exe = "terragrunt",
-					args = { "hclfmt" },
-					stdin = false,
+					exe = "terraform",
+					args = { "fmt", "-" },
+					stdin = true,
 				}
 			end,
 		},
