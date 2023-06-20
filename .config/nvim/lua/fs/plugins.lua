@@ -66,7 +66,12 @@ return packer.startup(function(use)
 	use("p00f/nvim-ts-rainbow")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("mhartington/formatter.nvim")
-	use("nvim-tree/nvim-tree.lua")
+	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	})
 	use("savq/paq-nvim")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
