@@ -77,7 +77,6 @@ return packer.startup(function(use)
 			"nvim-tree/nvim-web-devicons",
 		},
 	})
-	use("savq/paq-nvim")
 	use("tpope/vim-repeat")
 	use("tpope/vim-surround")
 	use("tpope/vim-fugitive")
