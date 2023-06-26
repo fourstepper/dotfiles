@@ -15,6 +15,8 @@ require("telescope").setup({
 			i = {
 				["<C-k>"] = require("telescope.actions").cycle_history_prev,
 				["<C-j>"] = require("telescope.actions").cycle_history_next,
+				["<A-j>"] = require("telescope.actions").move_selection_next,
+				["<A-k>"] = require("telescope.actions").move_selection_previous,
 				["<esc>"] = "close",
 			},
 		},
