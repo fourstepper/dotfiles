@@ -1,8 +1,12 @@
-local tree_cb = require("nvim-tree.config").nvim_tree_callback
+-- When leaving the nvim-tree buffer, close tree
+vim.cmd([[
+autocmd WinLeave NvimTree_* :q
+]])
+
+-- Setup nvim-tree
 require("nvim-tree").setup({
 	view = {
 		mappings = {},
-		-- sets relativenumber current cursor to number
 		side = "left",
 		number = true,
 		relativenumber = true,
