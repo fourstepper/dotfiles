@@ -12,11 +12,6 @@ end
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local check_backspace = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-end
-
 cmp.setup({
 	snippet = {
 		expand = function(args)
@@ -24,27 +19,20 @@ cmp.setup({
 		end,
 	},
 	mapping = {
+		["<C-y>"] = cmp.config.disable,
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
+			elseif luasnip.expand_or_locally_jumpable() then
 				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
 			else
 				fallback()
 			end
-		end, {
-			"i",
-			"s",
-		}),
+		end, { "i", "s" }),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -53,10 +41,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, {
-			"i",
-			"s",
-		}),
+		end, { "i", "s" }),
 	},
 	formatting = {
 		fields = { "abbr", "menu" },
@@ -72,9 +57,9 @@ cmp.setup({
 		end,
 	},
 	sources = {
+		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
