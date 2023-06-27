@@ -3,6 +3,10 @@ if not status then
 	return
 end
 
+local function maximize_status()
+	return vim.t.maximized and "   " or ""
+end
+
 lualine.setup({
 	options = {
 		globalstatus = true,
@@ -14,7 +18,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch" },
+		lualine_b = { "branch", maximize_status },
 		lualine_c = { { "filename", path = 1 } },
 		lualine_d = { "filetype" },
 
