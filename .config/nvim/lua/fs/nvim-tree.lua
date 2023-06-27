@@ -5,6 +5,9 @@ autocmd WinLeave NvimTree_* :q
 
 -- Setup nvim-tree
 require("nvim-tree").setup({
+	git = {
+		ignore = false,
+	},
 	view = {
 		mappings = {},
 		side = "left",
