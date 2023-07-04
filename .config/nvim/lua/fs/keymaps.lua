@@ -14,6 +14,8 @@ end
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- Make S-Tab unindent in normal mode
+keymap("i", "<S-Tab>", "<C-d>")
 -- Make Y yank to end of the line
 keymap("n", "Y", "y$")
 -- Don't lose paste content when replacing something
