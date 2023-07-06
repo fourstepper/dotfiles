@@ -63,6 +63,12 @@ keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
 keymap("n", "gca", "<Cmd>lua vim.lsp.buf.code_action()<CR>")
 -- Diagnostics
 keymap("n", "<leader>sd", "<Cmd>lua vim.diagnostic.open_float()<CR>")
+-- Trouble
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
 -- Debugging
 keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
 keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
