@@ -74,7 +74,6 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter-context",
 		requires = "nvim-treesitter/nvim-treesitter",
 	})
-	use("p00f/nvim-ts-rainbow")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("mhartington/formatter.nvim")
 	use({
