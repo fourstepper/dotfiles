@@ -46,6 +46,18 @@ require("lspconfig").cssls.setup({
 	capabilities = capabilities,
 })
 
+require("lspconfig").tailwindcss.setup({
+	capabilities = capabilities,
+})
+
+require("lspconfig").eslint.setup({
+	capabilities = capabilities,
+})
+
+require("lspconfig").tsserver.setup({
+	capabilities = capabilities,
+})
+
 require("lspconfig").lua_ls.setup({
 	capabilities = capabilities,
 	settings = {

@@ -12,6 +12,10 @@ end
 
 require("luasnip.loaders.from_vscode").lazy_load()
 
+luasnip.filetype_extend("javascript", { "javascriptreact" })
+
+luasnip.filetype_extend("javascript", { "html" })
+
 cmp.setup({
 	snippet = {
 		expand = function(args)
