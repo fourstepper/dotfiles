@@ -62,6 +62,12 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-smart-history.nvim")
 	use({
 		"nvim-treesitter/nvim-treesitter",
+		commit = "08aabb145f93ed1dd607ce8e2dcd52d356822300", -- works
+		-- commit = "823e67a1c9452075ec7f01e7aa05ac6e7b41fb1e", -- doesn't work
+		requires = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+			"p00f/nvim-ts-rainbow",
+		},
 		run = ":TSUpdate",
 	})
 	use({
