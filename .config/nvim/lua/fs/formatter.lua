@@ -24,11 +24,20 @@ require("formatter").setup({
 		go = {
 			require("formatter.filetypes.go").gofmt,
 		},
+		typescript = {
+			require("formatter.filetypes.typescript").prettierd,
+		},
+		typescriptreact = {
+			require("formatter.filetypes.typescriptreact").prettierd,
+		},
+		markdown = {
+			require("formatter.filetypes.markdown").prettierd,
+		},
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
 		-- yaml = {
-		-- 	require("formatter.filetypes.yaml").prettier,
+		-- 	require("formatter.filetypes.yaml").prettierd,
 		-- },
 		["*"] = {
 			require("formatter.filetypes.any").remove_trailing_whitespace,
