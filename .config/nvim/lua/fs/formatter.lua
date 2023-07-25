@@ -33,6 +33,12 @@ require("formatter").setup({
 		typescriptreact = {
 			require("formatter.filetypes.typescriptreact").prettierd,
 		},
+		css = {
+			require("formatter.filetypes.typescriptreact").prettierd,
+		},
+		scss = {
+			require("formatter.filetypes.typescriptreact").prettierd,
+		},
 		markdown = {
 			require("formatter.filetypes.markdown").prettierd,
 		},
