@@ -24,6 +24,9 @@ require("formatter").setup({
 		go = {
 			require("formatter.filetypes.go").gofmt,
 		},
+		svelte = {
+			require("formatter.filetypes.typescriptreact").prettier,
+		},
 		typescript = {
 			require("formatter.filetypes.typescript").prettierd,
 		},
