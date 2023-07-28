@@ -35,7 +35,6 @@ if [ "$(uname)" == "Darwin" ]; then
         # bash completion v2
     fi
     [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-    BASH_COMPLETION_COMPAT_DIR="/opt/homebrew/etc/bash_completion.d"
     # export homebrew sbin
     export PATH="/opt/homebrew/sbin:$PATH"
 fi
