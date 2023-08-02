@@ -4,9 +4,13 @@
 	name = Robin Opletal
 	email = me@robinopletal.com
 [gpg]
-    program = gpg
+        program = gpg
+[commit]
+        gpgsign = true
+[tag]
+        gpgSign = true
 [includeIf "gitdir:~/workspace/work/"]
-    path = ~/workspace/work/.gitconfig
+        path = ~/workspace/work/.gitconfig
 [core]
 	excludesfile = /Users/robin.opletal/.gitignore_global
 [push]
