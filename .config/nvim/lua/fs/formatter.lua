@@ -9,6 +9,9 @@ require("formatter").setup({
 				}
 			end,
 		},
+		json = {
+			require("formatter.filetypes.json").prettierd,
+		},
 		hcl = {
 			function()
 				return {
