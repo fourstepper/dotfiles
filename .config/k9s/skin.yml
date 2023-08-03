@@ -1,73 +1,106 @@
 # For macOS, symlink this to the appropriate location, like so:
 # ln -s ~/.config/k9s/skin.yml ~/Library/Application\ Support/k9s/skin.yml
 
-# Skin...
+# Styles...
+foreground: &foreground "#444444"
+background: &background "#eeeeee"
+current_line: &current_line "#d70087"
+selection: &selection "#eeeeee"
+comment: &comment "#bcbcbc"
+cyan: &cyan "#0087af"
+green: &green "#008700"
+orange: &orange "#d75f00"
+magenta: &magenta "#8700af"
+blue: &blue "#0087af"
+red: &red "#d70000"
+
 k9s:
   body:
-    fgColor: default
-    bgColor: default
-    logoColor: default
+    fgColor: *foreground
+    bgColor: *background
+    logoColor: *blue
   prompt:
-    fgColor: default
-    bgColor: default
-    suggestColor: default
+    fgColor: *foreground
+    bgColor: *background
+    suggestColor: *orange
   info:
-    fgColor: default
-    sectionColor: default
+    fgColor: *magenta
+    sectionColor: *foreground
+  help:
+    fgColor: *foreground
+    bgColor: *background
+    keyColor: *magenta
+    numKeyColor: *blue
+    sectionColor: *green
   dialog:
-    fgColor: default
-    bgColor: default
-    buttonFgColor: default
-    buttonBgColor: default
+    fgColor: *foreground
+    bgColor: *background
+    buttonFgColor: *foreground
+    buttonBgColor: *magenta
     buttonFocusFgColor: white
-    buttonFocusBgColor: black
-    labelFgColor: default
-    fieldFgColor: default
+    buttonFocusBgColor: *cyan
+    labelFgColor: *orange
+    fieldFgColor: *foreground
   frame:
     border:
-      fgColor: default
-      focusColor: default
+      fgColor: *selection
+      focusColor: *current_line
     menu:
-      fgColor: default
-      keyColor: default
-      numKeyColor: default
+      fgColor: *foreground
+      keyColor: *magenta
+      numKeyColor: *magenta
     crumbs:
-      fgColor: default
-      bgColor: default
-      activeColor: default
+      fgColor: *background
+      bgColor: *comment
+      activeColor: *blue
     status:
-      newColor: default
-      modifyColor: default
-      addColor: default
-      errorColor: default
-      highlightColor: default
-      killColor: default
-      completedColor: default
+      newColor: *cyan
+      modifyColor: *blue
+      addColor: *green
+      errorColor: *red
+      highlightColor: *orange
+      killColor: *comment
+      completedColor: *comment
     title:
-      fgColor: default
-      bgColor: default
-      highlightColor: default
-      counterColor: default
-      filterColor: default
+      fgColor: *foreground
+      bgColor: *background
+      highlightColor: *orange
+      counterColor: *blue
+      filterColor: *magenta
   views:
+    charts:
+      bgColor: background
+      defaultDialColors:
+        - *blue
+        - *red
+      defaultChartColors:
+        - *blue
+        - *red
     table:
-      fgColor: default
-      bgColor: default
-      # cursorFgColor: default
-      # cursorBfColor: default
+      fgColor: *foreground
+      bgColor: *background
+      # this sets the current item's text color to *background
+      cursorFgColor: *background
+      cursorBgColor: *current_line
       header:
-        fgColor: default
-        bgColor: default
-        sorterColor: default
+        fgColor: *foreground
+        bgColor: *background
+        sorterColor: *selection
+    xray:
+      fgColor: *foreground
+      bgColor: *background
+      cursorColor: *current_line
+      graphicColor: *blue
+      showIcons: false
     yaml:
-      keyColor: default
-      colonColor: default
-      valueColor: default
+      keyColor: *magenta
+      colonColor: *blue
+      valueColor: *foreground
     logs:
-      fgColor: default
-      bgColor: default
+      fgColor: *foreground
+      bgColor: *background
       indicator:
-        fgColor: default
-        bgColor: default
-        toggleOnColor: default
-        toggleOffColor: default
+        fgColor: *foreground
+        bgColor: *background
+        toggleOnColor: *magenta
+        toggleOffColor: *blue
