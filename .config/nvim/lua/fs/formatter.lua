@@ -28,19 +28,17 @@ require("formatter").setup({
 			require("formatter.filetypes.go").gofmt,
 		},
 		svelte = {
-			require("formatter.filetypes.typescriptreact").prettier,
+			require("formatter.filetypes.svelte").prettier,
 		},
 		typescript = {
 			require("formatter.filetypes.typescript").prettierd,
 		},
 		typescriptreact = {
 			require("formatter.filetypes.typescriptreact").prettierd,
+			require("formatter.filetypes.typescriptreact").eslint_d,
 		},
 		css = {
-			require("formatter.filetypes.typescriptreact").prettierd,
-		},
-		scss = {
-			require("formatter.filetypes.typescriptreact").prettierd,
+			require("formatter.filetypes.css").prettierd,
 		},
 		markdown = {
 			require("formatter.filetypes.markdown").prettierd,

@@ -77,6 +77,16 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim")
 	use("mhartington/formatter.nvim")
 	use({
+		"laytan/tailwind-sorter.nvim",
+		requires = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("tailwind-sorter").setup({
+				on_save_enabled = true,
+			})
+		end,
+		run = "cd formatter && npm i && npm run build",
+	})
+	use({
 		"nvim-tree/nvim-tree.lua",
 		requires = {
 			"nvim-tree/nvim-web-devicons",
