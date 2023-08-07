@@ -37,6 +37,7 @@ return packer.startup(function(use)
 		end,
 	})
 	use("NLKNguyen/papercolor-theme")
+	use("xiyaowong/nvim-colorizer.lua")
 	use("nvim-lualine/lualine.nvim")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
@@ -81,6 +82,7 @@ return packer.startup(function(use)
 		config = function()
 			require("tailwind-sorter").setup({
 				on_save_enabled = true,
+				on_save_pattern = { "*.html", "*.js", "*.jsx", "*.tsx", "*.svelte" },
 			})
 		end,
 		run = "cd formatter && npm i && npm run build",
