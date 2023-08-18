@@ -80,7 +80,6 @@ cmp.setup({
 				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
-				tabnine = "[TN]",
 				path = "[Path]",
 			})[entry.source.name]
 			return vim_item
@@ -90,7 +89,6 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
-		{ name = "cmp_tabnine" },
 		{ name = "path" },
 	},
 	view = {

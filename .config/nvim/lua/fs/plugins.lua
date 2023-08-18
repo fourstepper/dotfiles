@@ -116,8 +116,6 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-dap.nvim")
 	use("leoluz/nvim-dap-go")
 	use("mfussenegger/nvim-dap-python")
-	-- magic
-	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
