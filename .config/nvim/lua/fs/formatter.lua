@@ -35,7 +35,6 @@ require("formatter").setup({
 		},
 		typescriptreact = {
 			require("formatter.filetypes.typescriptreact").prettierd,
-			require("formatter.filetypes.typescriptreact").eslint_d,
 		},
 		css = {
 			require("formatter.filetypes.css").prettierd,
