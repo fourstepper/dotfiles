@@ -51,6 +51,8 @@ keymap("n", "<C-h>", "<cmd>lua require('telescope.builtin').command_history()<CR
 keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
 keymap("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
 keymap("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
+keymap("n", "<leader>ks", "<cmd>lua require('telescope').extensions.vimwiki.vimwiki()<CR>")
+keymap("n", "<leader>kg", "<cmd>lua require('telescope').extensions.vw.live_grep()<CR>")
 -- Git
 keymap("n", "<leader>gg", ":G<CR>")
 keymap("n", "<leader>ga", ":G ")

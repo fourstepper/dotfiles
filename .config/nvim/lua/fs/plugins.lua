@@ -55,10 +55,11 @@ return packer.startup(function(use)
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
-	use("ThePrimeagen/harpoon")
-	use("tami5/sqlite.lua")
 	use("nvim-telescope/telescope-fzy-native.nvim")
 	use("nvim-telescope/telescope-smart-history.nvim")
+	use("ElPiloto/telescope-vimwiki.nvim")
+	use("ThePrimeagen/harpoon")
+	use("tami5/sqlite.lua")
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		commit = "08aabb145f93ed1dd607ce8e2dcd52d356822300", -- works
