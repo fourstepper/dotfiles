@@ -42,6 +42,9 @@ require("formatter").setup({
 		markdown = {
 			require("formatter.filetypes.markdown").prettierd,
 		},
+		vimwiki = {
+			require("formatter.filetypes.markdown").prettierd,
+		},
 		lua = {
 			require("formatter.filetypes.lua").stylua,
 		},
