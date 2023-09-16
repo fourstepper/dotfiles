@@ -57,7 +57,6 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-fzy-native.nvim")
 	use("nvim-telescope/telescope-smart-history.nvim")
-	use("ElPiloto/telescope-vimwiki.nvim")
 	use("ThePrimeagen/harpoon")
 	use("tami5/sqlite.lua")
 	use({
@@ -116,8 +115,6 @@ return packer.startup(function(use)
 	use("nvim-telescope/telescope-dap.nvim")
 	use("leoluz/nvim-dap-go")
 	use("mfussenegger/nvim-dap-python")
-	-- vimwiki
-	use("vimwiki/vimwiki")
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
