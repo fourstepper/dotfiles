@@ -22,6 +22,7 @@ require("telescope").setup({
 		},
 		file_ignore_patterns = {
 			".git/.*",
+			".svelte%-kit.*",
 			"node_modules",
 			".terragrunt-cache.*",
 			".cache.*",
