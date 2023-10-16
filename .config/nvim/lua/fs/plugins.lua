@@ -66,6 +66,7 @@ return packer.startup(function(use)
 		requires = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"p00f/nvim-ts-rainbow",
+			"vrischmann/tree-sitter-templ",
 		},
 		run = ":TSUpdate",
 	})
