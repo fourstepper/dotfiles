@@ -11,6 +11,7 @@ require("lspconfig").terraformls.setup({
 require("lspconfig").yamlls.setup({
 	capabilities = capabilities,
 })
+
 require("lspconfig").pylsp.setup({
 	capabilities = capabilities,
 	settings = {
@@ -30,6 +31,11 @@ require("lspconfig").pylsp.setup({
 require("lspconfig").gopls.setup({
 	capabilities = capabilities,
 })
+
+require("lspconfig").templ.setup({
+	capabilities = capabilities,
+})
+
 require("lspconfig").dockerls.setup({
 	capabilities = capabilities,
 })
