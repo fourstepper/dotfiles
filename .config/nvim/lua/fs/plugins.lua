@@ -109,6 +109,7 @@ return packer.startup(function(use)
 	use("christoomey/vim-tmux-navigator")
 	use("arouene/vim-ansible-vault")
 	use("numToStr/Comment.nvim")
+	use("tpope/vim-rails")
 	-- debugging
 	use("mfussenegger/nvim-dap")
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
