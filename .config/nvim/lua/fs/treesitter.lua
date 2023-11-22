@@ -17,9 +17,6 @@ treesitter_configs.setup({
 		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
 		max_file_lines = nil, -- Do not enable for files with more than n lines, int
 	},
-	context_commentstring = {
-		enable = true,
-	},
 })
 
 local has_ts_context, ts_context = pcall(require, "treesitter-context")
@@ -36,3 +33,10 @@ ts_context.setup({
 		},
 	},
 })
+
+local has_ts_commentstring, ts_commentstring = pcall(require, "ts_context_commentstring")
+if not has_ts_commentstring then
+	return
+end
+
+ts_commentstring.setup()
