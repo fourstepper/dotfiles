@@ -99,6 +99,7 @@ return packer.startup(function(use)
 		},
 	})
 	use("tpope/vim-repeat")
+	use("tpope/vim-sleuth")
 	use("declancm/maximize.nvim")
 	use("tpope/vim-surround")
 	use("tpope/vim-fugitive")
