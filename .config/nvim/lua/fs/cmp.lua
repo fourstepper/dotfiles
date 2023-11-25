@@ -10,11 +10,12 @@ if not snip_status_ok then
 	return
 end
 
-require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").load()
 
 luasnip.filetype_extend("javascript", { "javascriptreact" })
-
-luasnip.filetype_extend("javascript", { "html" })
+luasnip.filetype_extend("typescript", { "typescriptreact" })
+luasnip.filetype_extend("ruby", { "rails" })
+luasnip.filetype_extend("all", { "license" })
 
 cmp.setup({
 	snippet = {
@@ -40,7 +41,7 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
+			elseif luasnip.locally_jumpable(-1) then
 				luasnip.jump(-1)
 			else
 				fallback()
@@ -77,7 +78,7 @@ cmp.setup({
 		fields = { "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
+				--  nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
@@ -87,7 +88,7 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
+		-- { name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
