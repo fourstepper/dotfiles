@@ -4,15 +4,9 @@ if not status_ok then
 end
 
 treesitter_configs.setup({
-	highlight = {
-		enable = true,
-	},
 	ensure_installed = "all",
 	auto_install = false,
 	ignore_install = { "phpdoc" },
-	indent = {
-		enable = false,
-	},
 	rainbow = {
 		enable = true,
 		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
