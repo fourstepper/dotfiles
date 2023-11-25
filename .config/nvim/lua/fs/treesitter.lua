@@ -8,6 +8,7 @@ treesitter_configs.setup({
 		enable = true,
 	},
 	ensure_installed = "all",
+	auto_install = false,
 	ignore_install = { "phpdoc" },
 	indent = {
 		enable = false,
