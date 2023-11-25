@@ -21,6 +21,9 @@ require("formatter").setup({
 				}
 			end,
 		},
+		ruby = {
+			require("formatter.filetypes.python").rubocop,
+		},
 		python = {
 			require("formatter.filetypes.python").black,
 		},
