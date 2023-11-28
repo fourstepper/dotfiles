@@ -82,7 +82,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
-		requires = {
+		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
