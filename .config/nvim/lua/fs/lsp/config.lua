@@ -27,6 +27,12 @@ require("lspconfig").pylsp.setup({
 require("lspconfig").gopls.setup({
 	capabilities = capabilities,
 })
+require("lspconfig").ruby_ls.setup({
+	capabilities = capabilities,
+})
+require("lspconfig").ansiblels.setup({
+	capabilities = capabilities,
+})
 require("lspconfig").dockerls.setup({
 	capabilities = capabilities,
 })
