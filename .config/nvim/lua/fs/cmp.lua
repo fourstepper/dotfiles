@@ -79,8 +79,8 @@ cmp.setup({
 		fields = { "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.menu = ({
-				luasnip = "[Snippet]",
 				nvim_lsp = "[LSP]",
+				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
 			})[entry.source.name]
@@ -88,8 +88,8 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
