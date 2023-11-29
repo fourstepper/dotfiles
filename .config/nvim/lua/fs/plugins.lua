@@ -68,7 +68,6 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"JoosepAlviste/nvim-ts-context-commentstring",
-			"p00f/nvim-ts-rainbow",
 			"nvim-treesitter/nvim-treesitter-context",
 		},
 		build = ":TSUpdate",
