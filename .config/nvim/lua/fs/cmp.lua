@@ -16,6 +16,7 @@ luasnip.filetype_extend("javascript", { "javascriptreact" })
 luasnip.filetype_extend("typescript", { "typescriptreact" })
 luasnip.filetype_extend("ruby", { "rails" })
 luasnip.filetype_extend("eruby", { "html" })
+-- luasnip.filetype_extend("svelte", { "html" })
 luasnip.filetype_extend("all", { "license" })
 
 cmp.setup({
@@ -79,7 +80,7 @@ cmp.setup({
 		fields = { "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.menu = ({
-				--  nvim_lsp = "[LSP]",
+				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
@@ -88,8 +89,8 @@ cmp.setup({
 		end,
 	},
 	sources = {
+		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		-- { name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
