@@ -30,6 +30,15 @@ require("lspconfig").gopls.setup({
 require("lspconfig").ruby_ls.setup({
 	capabilities = capabilities,
 })
+require("lspconfig").solargraph.setup({
+	capabilities = capabilities,
+	settings = {
+		solargraph = {
+			diagnostics = false,
+			completion = true,
+		},
+	},
+})
 require("lspconfig").ansiblels.setup({
 	capabilities = capabilities,
 })
