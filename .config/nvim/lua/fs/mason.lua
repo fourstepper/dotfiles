@@ -29,6 +29,7 @@ mason_tool_installer.setup({
 		"stylua",
 		"black",
 		"rubocop",
+		"prettier",
 		"prettierd",
 		"eslint_d",
 		-- DAP
