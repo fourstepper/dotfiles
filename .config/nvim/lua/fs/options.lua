@@ -15,7 +15,7 @@ local options = {
 	linebreak = true,
 	termguicolors = true,
 	updatetime = 300,
-	background = "dark",
+	background = "light",
 	number = true,
 	relativenumber = true,
 	-- Make search better
