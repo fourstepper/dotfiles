@@ -32,7 +32,6 @@ require("lazy").setup({
 		},
 	},
 	"NLKNguyen/papercolor-theme",
-	"folke/tokyonight.nvim",
 	"xiyaowong/nvim-colorizer.lua",
 	"nvim-lualine/lualine.nvim",
 	{
