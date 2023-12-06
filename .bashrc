@@ -57,11 +57,10 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_DEFAULT_OPTS='--bind J:down,K:up --ansi'
 
 # Add to PATH
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$HOME/.cargo/bin/:$HOME/go/bin:$HOME/workspace/.scripts:$HOME/.gem/bin:$PATH
+export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$HOME/.cargo/bin/:$HOME/go/bin:$HOME/workspace/.scripts:$HOME/bin:$PATH
 
-# Ruby gem paths
+# # Ruby gem paths
 export GEM_HOME=$HOME/.gem
-export GEM_PATH=$HOME/.gem
 
 # Avoid duplicates
 HISTCONTROL=ignoredups:erasedups
