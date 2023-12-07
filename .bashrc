@@ -62,18 +62,20 @@ export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:$HOME/.cargo/bin/:$HO
 # # Ruby gem paths
 export GEM_HOME=$HOME/.gem
 
-# Avoid duplicates
-HISTCONTROL=ignoredups:erasedups
+# Turn on parallel history
+shopt -s histappend
+history -a
 
-# Set bigger history
-export HISTSIZE=100000
-export HISTFILESIZE=100000
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
 
-# When the shell exits, append to the history file instead of overwriting it
+# append to the history file, don't overwrite it
 shopt -s histappend
 
-# After each command, append to the history file and reread it
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=2000
+HISTFILESIZE=15000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
