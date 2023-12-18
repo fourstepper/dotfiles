@@ -27,6 +27,9 @@ require("lspconfig").pylsp.setup({
 require("lspconfig").gopls.setup({
 	capabilities = capabilities,
 })
+require("lspconfig").templ.setup({
+	capabilities = capabilities,
+})
 require("lspconfig").ruby_ls.setup({
 	capabilities = capabilities,
 })
