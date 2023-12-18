@@ -10,7 +10,7 @@ if not snip_status_ok then
 	return
 end
 
-require("luasnip.loaders.from_vscode").load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 luasnip.filetype_extend("javascript", { "javascriptreact" })
 luasnip.filetype_extend("typescript", { "typescriptreact" })
