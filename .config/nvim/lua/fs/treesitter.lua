@@ -6,6 +6,10 @@ end
 treesitter_configs.setup({
 	ensure_installed = "all",
 	auto_install = false,
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
 })
 
 local has_ts_context, ts_context = pcall(require, "treesitter-context")
