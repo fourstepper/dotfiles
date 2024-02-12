@@ -33,6 +33,15 @@ require("formatter").setup({
 		go = {
 			require("formatter.filetypes.go").gofmt,
 		},
+		templ = {
+			function()
+				return {
+					exe = "templ",
+					args = { "fmt" },
+					stdin = true,
+				}
+			end,
+		},
 		svelte = {
 			require("formatter.filetypes.svelte").prettier,
 		},
