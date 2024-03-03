@@ -8,7 +8,7 @@ for k, v in pairs(globals) do
 end
 
 local options = {
-	mouse = "a",
+	mouse = "",
 	pumblend = 5,
 	-- pumheight = 3,
 	clipboard = "unnamedplus",
