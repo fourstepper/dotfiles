@@ -51,6 +51,7 @@ require("lazy").setup({
 	"lukas-reineke/indent-blankline.nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-sleuth",
+	"tpope/vim-vinegar",
 	"declancm/maximize.nvim",
 	"tpope/vim-surround",
 	"tpope/vim-fugitive",
@@ -73,12 +74,12 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 	"mhartington/formatter.nvim",
-	{
-		"nvim-tree/nvim-tree.lua",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
+	-- {
+	-- 	"nvim-tree/nvim-tree.lua",
+	-- 	dependencies = {
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 	},
+	-- },
 	{
 		"folke/trouble.nvim",
 		dependencies = {
