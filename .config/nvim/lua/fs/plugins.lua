@@ -95,4 +95,5 @@ require("lazy").setup({
 			"mfussenegger/nvim-dap-python",
 		},
 	},
+	"github/copilot.vim",
 })
