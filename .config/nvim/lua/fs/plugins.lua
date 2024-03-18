@@ -46,7 +46,13 @@ require("lazy").setup({
 	"nvim-telescope/telescope.nvim",
 	"nvim-telescope/telescope-fzy-native.nvim",
 	"nvim-telescope/telescope-smart-history.nvim",
-	"ThePrimeagen/harpoon",
+	{
+		"otavioschwanck/arrow.nvim",
+		opts = {
+			show_icons = true,
+			leader_key = ";", -- Recommended to be a single key
+		},
+	},
 	"tami5/sqlite.lua",
 	"lukas-reineke/indent-blankline.nvim",
 	"tpope/vim-repeat",
