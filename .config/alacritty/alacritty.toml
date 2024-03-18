@@ -1,4 +1,4 @@
-import = ["/home/fourstepper/.config/alacritty/themes/papercolor-light.toml"]
+import = ["~/.config/alacritty/themes/papercolor-light.toml"]
 
 [font]
 size = 12.0
