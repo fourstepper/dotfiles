@@ -14,8 +14,6 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 luasnip.filetype_extend("javascript", { "javascriptreact" })
 luasnip.filetype_extend("typescript", { "typescriptreact" })
-luasnip.filetype_extend("ruby", { "rails" })
-luasnip.filetype_extend("eruby", { "html" })
 luasnip.filetype_extend("all", { "license" })
 
 cmp.setup({
