@@ -39,6 +39,9 @@ require("formatter").setup({
 		svelte = {
 			require("formatter.filetypes.svelte").prettier,
 		},
+		javascript = {
+			require("formatter.filetypes.javascript").prettierd,
+		},
 		typescript = {
 			require("formatter.filetypes.typescript").prettierd,
 		},
