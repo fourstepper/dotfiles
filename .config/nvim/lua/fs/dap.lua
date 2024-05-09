@@ -1,10 +1,12 @@
 local has_dap, dap = pcall(require, "dap")
 if not has_dap then
+	vim.notify("dap not found!")
 	return
 end
 
 local has_dapui, dapui = pcall(require, "dapui")
-if not has_dap then
+if not has_dapui then
+	vim.notify("dapui not found!")
 	return
 end
 
