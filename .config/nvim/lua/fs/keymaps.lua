@@ -81,3 +81,5 @@ keymap("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>")
 keymap("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>")
 keymap("n", "<leader>dq", "<Cmd>lua require'dap'.terminate()<CR>")
 keymap("n", "<leader>du", "<Cmd> lua require'dapui'.toggle()<CR>")
+-- oil.nvim like vim-vinegar
+keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })

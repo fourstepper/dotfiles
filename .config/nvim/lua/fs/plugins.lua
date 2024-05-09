@@ -57,7 +57,7 @@ require("lazy").setup({
 	"lukas-reineke/indent-blankline.nvim",
 	"tpope/vim-repeat",
 	"tpope/vim-sleuth",
-	"tpope/vim-vinegar",
+	"stevearc/oil.nvim",
 	"declancm/maximize.nvim",
 	"tpope/vim-surround",
 	"tpope/vim-fugitive",
