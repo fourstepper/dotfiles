@@ -94,10 +94,10 @@ require("lazy").setup({
 	{
 		"mfussenegger/nvim-dap",
 		dependencies = {
-			"rcarriga/nvim-dap-ui",
 			"nvim-telescope/telescope-dap.nvim",
 			"leoluz/nvim-dap-go",
 			"mfussenegger/nvim-dap-python",
 		},
 	},
+	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 })
