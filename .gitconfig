@@ -9,8 +9,6 @@
         gpgsign = true
 [tag]
         gpgSign = true
-[includeIf "gitdir:~/workspace/work/"]
-        path = ~/workspace/work/.gitconfig
 [core]
 	excludesfile = ~/.gitignore_global
 [push]
