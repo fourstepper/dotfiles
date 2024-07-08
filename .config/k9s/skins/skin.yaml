@@ -1,5 +1,6 @@
 # For macOS, symlink this to the appropriate location, like so:
-# ln -s ~/.config/k9s/skin.yml ~/Library/Application\ Support/k9s/skin.yml
+# ln -s ~/.config/k9s/skins/skin.yaml ~/Library/Application\ Support/k9s/skins/skin.yaml
+# and add value `skin` to k9s.ui.skin in config.yaml
 
 # Styles...
 foreground: &foreground "#444444"
