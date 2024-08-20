@@ -25,6 +25,7 @@ require("telescope").setup({
 			".svelte%-kit.*",
 			"node_modules",
 			".terragrunt-cache.*",
+			".terraform",
 			".cache.*",
 			"venv",
 			"__pycache__",
