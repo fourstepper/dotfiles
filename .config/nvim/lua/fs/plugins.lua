@@ -68,6 +68,7 @@ require("lazy").setup({
 	"christoomey/vim-tmux-navigator",
 	"arouene/vim-ansible-vault",
 	"numToStr/Comment.nvim",
+	"tpope/vim-rails",
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
