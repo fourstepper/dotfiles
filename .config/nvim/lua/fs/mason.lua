@@ -28,6 +28,7 @@ mason_tool_installer.setup({
 		-- FORMATTING
 		"stylua",
 		"black",
+		"rubocop",
 		"htmlbeautifier",
 		"prettier",
 		"prettierd",
