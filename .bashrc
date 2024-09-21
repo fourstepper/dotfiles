@@ -37,6 +37,9 @@ if [ "$(uname)" == "Darwin" ]; then
     [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
     # export homebrew sbin
     export PATH="/opt/homebrew/sbin:$PATH"
+    # ruby environment manager
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
 fi
 
 # ve <virtualenv name> activates the virtualenv
