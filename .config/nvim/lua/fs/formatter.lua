@@ -24,9 +24,6 @@ require("formatter").setup({
 		ruby = {
 			require("formatter.filetypes.ruby").rubocop,
 		},
-		eruby = {
-			require("formatter.filetypes.eruby").htmlbeautifier,
-		},
 		python = {
 			require("formatter.filetypes.python").black,
 		},

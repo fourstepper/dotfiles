@@ -8,6 +8,15 @@ require("lspconfig").bashls.setup({
 require("lspconfig").terraformls.setup({
 	capabilities = capabilities,
 })
+require("lspconfig").solargraph.setup({
+	capabilities = capabilities,
+	settings = {
+		solargraph = {
+			diagnostics = false,
+			completion = true,
+		},
+	},
+})
 require("lspconfig").pylsp.setup({
 	capabilities = capabilities,
 	settings = {
@@ -57,7 +66,7 @@ require("lspconfig").eslint.setup({
 	capabilities = capabilities,
 })
 
-require("lspconfig").tsserver.setup({
+require("lspconfig").ts_ls.setup({
 	capabilities = capabilities,
 })
 
