@@ -56,15 +56,9 @@ keymap("n", "<leader>gg", ":G<CR>")
 keymap("n", "<leader>ga", ":G ")
 -- LSP mappings
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
-keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
-keymap("n", "gsh", "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
-keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
-keymap("n", "gca", "<Cmd>lua vim.lsp.buf.code_action()<CR>")
--- Diagnostics
-keymap("n", "<leader>sd", "<Cmd>lua vim.diagnostic.open_float()<CR>")
 -- Trouble
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>")
+keymap("n", "gd", "<cmd>Trouble lsp toggle focus=false<CR>")
+keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")
 keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
 keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
 keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
