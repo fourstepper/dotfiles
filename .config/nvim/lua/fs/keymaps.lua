@@ -57,12 +57,8 @@ keymap("n", "<leader>ga", ":G ")
 -- LSP mappings
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 -- Trouble
-keymap("n", "gd", "<cmd>Trouble lsp toggle focus=false<CR>")
-keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>")
-keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
-keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>")
-keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+keymap("n", "gd", "<cmd>Trouble lsp toggle focus=true<CR>")
+keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true<cr>")
 -- Debugging
 keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
 keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
