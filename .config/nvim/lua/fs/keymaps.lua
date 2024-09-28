@@ -55,10 +55,12 @@ keymap("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
 keymap("n", "<leader>gg", ":G<CR>")
 keymap("n", "<leader>ga", ":G ")
 -- LSP mappings
+keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 -- Trouble
-keymap("n", "gd", "<cmd>Trouble lsp toggle focus=true<CR>")
-keymap("n", "<leader>xx", "<cmd>Trouble diagnostics toggle focus=true<cr>")
+keymap("n", "gi", "<cmd>Trouble lsp toggle focus=true<CR>")
+keymap("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>")
+keymap("n", "<leader>xw", "<cmd>Trouble diagnostics toggle focus=true<cr>")
 -- Debugging
 keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
 keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
