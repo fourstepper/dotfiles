@@ -15,6 +15,12 @@ family = "JetBrainsMono Nerd Font Mono"
 [font.normal]
 family = "JetBrainsMono Nerd Font Mono"
 
+
+[[keyboard.bindings]]
+chars = "\u001Bo"
+key = "O"
+mods = "Alt"
+
 [[keyboard.bindings]]
 chars = "\u0015"
 key = "Back"
