@@ -30,7 +30,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 		},
 	},
-	"NLKNguyen/papercolor-theme",
+	{ "folke/tokyonight.nvim", lazy = false, priority = 1000, opts = {} },
 	"xiyaowong/nvim-colorizer.lua",
 	"nvim-lualine/lualine.nvim",
 	{
