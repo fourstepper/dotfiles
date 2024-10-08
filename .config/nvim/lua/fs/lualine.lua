@@ -11,6 +11,7 @@ lualine.setup({
 	options = {
 		globalstatus = true,
 		icons_enabled = true,
+		theme = "PaperColor",
 		section_separators = { "", "" },
 		component_separators = { "", "" },
 		disabled_filetypes = {},
