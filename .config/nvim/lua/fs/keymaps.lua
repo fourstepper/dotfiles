@@ -56,6 +56,7 @@ keymap("n", "<leader>gg", ":G<CR>")
 keymap("n", "<leader>ga", ":G ")
 -- LSP mappings
 keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
+keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
 -- Trouble
 keymap("n", "gi", "<cmd>Trouble lsp toggle focus=true<CR>")
