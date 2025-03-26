@@ -7,8 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "assistant": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-7-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "base_keymap": "VSCode",
   "telemetry": {
-    "metrics": true
+    "diagnostics": false,
+    "metrics": false
   },
   "cursor_blink": false,
   "buffer_font_size": 12,
@@ -28,7 +37,7 @@
   "vim_mode": true,
   "theme": {
     "mode": "system",
-    "light": "Ayu Light",
+    "light": "macOS Classic Light",
     "dark": "One Dark"
   },
   "terminal": {
