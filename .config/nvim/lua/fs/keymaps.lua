@@ -77,4 +77,4 @@ keymap("n", "<leader>du", "<Cmd> lua require'dapui'.toggle()<CR>")
 -- oil.nvim like vim-vinegar
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- avante.nvim
-keymap("n", "<leader>ac", ":AvanteClear<CR>", { silent = true })
+keymap("n", "<leader>cc", ":AvanteClear<CR>", { silent = true })
