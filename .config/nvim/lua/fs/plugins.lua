@@ -61,6 +61,8 @@ require("lazy").setup({
 	"declancm/maximize.nvim",
 	"tpope/vim-surround",
 	"tpope/vim-fugitive",
+	"tpope/vim-rhubarb",
+	"shumphrey/fugitive-gitlab.vim",
 	"lewis6991/gitsigns.nvim",
 	"wellle/targets.vim",
 	"windwp/nvim-autopairs",
