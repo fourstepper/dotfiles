@@ -49,11 +49,12 @@ keymap("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{ hidden=t
 keymap("n", "<C-g>", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 keymap("n", "<C-h>", "<cmd>lua require('telescope.builtin').command_history()<CR>")
 keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
-keymap("n", "<leader>gb", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
 keymap("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
 -- Git
 keymap("n", "<leader>gg", ":G<CR>")
 keymap("n", "<leader>ga", ":G ")
+keymap("n", "<leader>gb", ":GBrowse<CR>")
+keymap("v", "<leader>gb", ":GBrowse<CR>")
 -- LSP mappings
 keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
 keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
