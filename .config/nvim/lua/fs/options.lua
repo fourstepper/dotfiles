@@ -1,6 +1,7 @@
 local globals = {
 	mapleader = " ",
 	tmux_navigator_no_mappings = "1",
+	fugitive_gitlab_domains = { "https://gitlab.skypicker.com" },
 }
 
 for k, v in pairs(globals) do
@@ -8,7 +9,7 @@ for k, v in pairs(globals) do
 end
 
 local options = {
-	mouse = "",
+	mouse = "a",
 	pumblend = 5,
 	-- pumheight = 3,
 	clipboard = "unnamedplus",
