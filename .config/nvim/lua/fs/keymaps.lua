@@ -20,9 +20,6 @@ keymap("i", "<S-Tab>", "<C-d>")
 keymap("n", "Y", "y$")
 -- Don't lose paste content when replacing something
 keymap("x", "<leader>p", '"_dP')
--- Open nvimtree
-keymap("n", "<leader>n", ":NvimTreeToggle<CR>")
-keymap("n", "<leader>m", ":NvimTreeFindFileToggle<CR>")
 -- Make new horizontal split and switch over to it
 keymap("n", "<leader>w", "<C-w><C-s><C-w>j")
 -- Make new vertical split and switch over to it
