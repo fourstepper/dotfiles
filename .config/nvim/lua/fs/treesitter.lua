@@ -12,21 +12,6 @@ treesitter_configs.setup({
 	},
 })
 
-local has_ts_context, ts_context = pcall(require, "treesitter-context")
-if not has_ts_context then
-	return
-end
-
-ts_context.setup({
-	patterns = {
-		terraform = {
-			"block",
-			"object_elem",
-			"attribute",
-		},
-	},
-})
-
 local has_ts_commentstring, ts_commentstring = pcall(require, "ts_context_commentstring")
 if not has_ts_commentstring then
 	return
