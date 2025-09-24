@@ -2,7 +2,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-require("lspconfig").pylsp.setup({
+vim.lsp.config('pylsp', {
 	capabilities = capabilities,
 	settings = {
 		pylsp = {
@@ -18,16 +18,16 @@ require("lspconfig").pylsp.setup({
 		},
 	},
 })
-require("lspconfig").gopls.setup({ capabilities = capabilities })
-require("lspconfig").templ.setup({ capabilities = capabilities })
-require("lspconfig").ansiblels.setup({ capabilities = capabilities })
-require("lspconfig").dockerls.setup({ capabilities = capabilities })
-require("lspconfig").jsonls.setup({ capabilities = capabilities })
-require("lspconfig").html.setup({ capabilities = capabilities })
-require("lspconfig").cssls.setup({ capabilities = capabilities })
-require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-require("lspconfig").eslint.setup({ capabilities = capabilities })
-require("lspconfig").ts_ls.setup({ capabilities = capabilities })
-require("lspconfig").svelte.setup({ capabilities = capabilities })
-require("lspconfig").bashls.setup({ capabilities = capabilities })
-require("lspconfig").terraformls.setup({ capabilities = capabilities })
+vim.lsp.config('gopls', { capabilities = capabilities })
+vim.lsp.config('templ', { capabilities = capabilities })
+vim.lsp.config('ansiblels', { capabilities = capabilities })
+vim.lsp.config('dockerls', { capabilities = capabilities })
+vim.lsp.config('jsonls', { capabilities = capabilities })
+vim.lsp.config('html', { capabilities = capabilities })
+vim.lsp.config('cssls', { capabilities = capabilities })
+vim.lsp.config('tailwindcss', { capabilities = capabilities })
+vim.lsp.config('eslint', { capabilities = capabilities })
+vim.lsp.config('ts_ls', { capabilities = capabilities })
+vim.lsp.config('svelte', { capabilities = capabilities })
+vim.lsp.config('bashls', { capabilities = capabilities })
+vim.lsp.config('terraformls', { capabilities = capabilities })
