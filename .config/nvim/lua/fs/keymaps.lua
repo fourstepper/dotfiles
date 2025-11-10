@@ -45,7 +45,7 @@ keymap("n", "<M-l>", ":TmuxNavigateRight<CR>", { silent = true })
 keymap("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{ hidden=true, no_ignore=true }<CR>")
 keymap("n", "<C-g>", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
 keymap("n", "<C-h>", "<cmd>lua require('telescope.builtin').command_history()<CR>")
-keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_branches()<CR>")
+keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
 keymap("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
 -- Git
 keymap("n", "<leader>gg", ":G<CR>")
