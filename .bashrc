@@ -40,6 +40,10 @@ if [ "$(uname)" == "Darwin" ]; then
     # ruby environment manager
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
+
+     export NVM_DIR="$HOME/.nvm"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 fi
 
 # ve <virtualenv name> activates the virtualenv
@@ -137,14 +141,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
-alias h="history -20"
 alias vim='nvim'
 alias v='nvim'
 alias cds='cd ~/workspace/'
 alias cdw='cd ~/workspace/work/'
 alias cdp='cd ~/workspace/personal/'
 alias randompass='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;'
-alias aerc='mkdir -p ~/.log/aerc && aerc > ~/.log/aerc/aerc.log'
+alias ca='cursor-agent'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
