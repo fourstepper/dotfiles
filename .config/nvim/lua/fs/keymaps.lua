@@ -53,13 +53,12 @@ keymap("n", "<leader>ga", ":G ")
 keymap("n", "<leader>gb", ":GBrowse<CR>")
 keymap("v", "<leader>gb", ":GBrowse<CR>")
 -- LSP mappings
-keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>")
+keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
+keymap("n", "gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
 keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
--- Trouble
-keymap("n", "gi", "<cmd>Trouble lsp toggle focus=true<CR>")
-keymap("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0 focus=true<cr>")
-keymap("n", "<leader>xw", "<cmd>Trouble diagnostics toggle focus=true<cr>")
+-- Diagnostics
+keymap("n", "<leader>xd", "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>")
+keymap("n", "<leader>xw", "<cmd>lua require('telescope.builtin').diagnostics()<CR>")
 -- Debugging
 keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
 keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
