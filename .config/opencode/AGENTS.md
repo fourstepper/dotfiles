@@ -34,6 +34,12 @@ This includes but is not limited to:
 
 Before committing, always review staged changes for accidental secret exposure. If in doubt, ask the user to confirm the commit is safe.
 
+## GitLab Merge Requests
+
+When creating merge requests on behalf of the user:
+
+- **Always assign to me**: When creating a merge request, always assign it to Robin Opletal (user ID: 2368, username: robin.opletal)
+
 ## Linear Issue Management
 
 When updating issues in Linear via the Linear MCP:
