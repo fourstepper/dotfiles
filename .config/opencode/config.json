@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "gitlab": {
+      "type": "local",
+      "command": ["npx", "-y", "@zereight/mcp-gitlab"],
+      "environment": {
+        "GITLAB_API_URL": "https://gitlab.skypicker.com/api/v4",
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "${OPENCODE_GITLAB_PERSONAL_ACCESS_TOKEN}",
+        "GITLAB_READ_ONLY_MODE": "false",
+        "USE_GITLAB_WIKI": "false"
+      },
+      "enabled": true,
+      "timeout": 30000
+    }
+  }
+}
