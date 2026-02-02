@@ -33,3 +33,9 @@ This includes but is not limited to:
 - Any string that appears to be a secret or credential
 
 Before committing, always review staged changes for accidental secret exposure. If in doubt, ask the user to confirm the commit is safe.
+
+## Linear Issue Management
+
+When updating issues in Linear via the Linear MCP:
+
+- **Prefer comments over direct edits**: For updates on issues, primarily use comments rather than modifying the issue fields directly

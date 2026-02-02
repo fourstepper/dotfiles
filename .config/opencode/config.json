@@ -12,6 +12,15 @@
       },
       "enabled": true,
       "timeout": 30000
+    },
+    "linear": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp",
+      "headers": {
+        "Authorization": "Bearer {env:OPENCODE_LINEAR_API_KEY}"
+      },
+      "enabled": true,
+      "timeout": 30000
     }
   }
 }
