@@ -98,6 +98,15 @@
                     },
                     "ignore": false,
                     "mouse_flip_vertical_wheel": true
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 45091,
+                        "vendor_id": 1133
+                    },
+                    "ignore": false
                 }
             ],
             "name": "Default profile",
