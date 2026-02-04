@@ -11,6 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set SQLite library path for sqlite.lua plugin
+vim.g.sqlite_clib_path = '/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib'
+
 require("lazy").setup({
 	{
 		"iamcco/markdown-preview.nvim",
