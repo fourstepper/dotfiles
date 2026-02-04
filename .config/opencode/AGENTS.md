@@ -16,6 +16,13 @@ The AGENTS.md file contains custom instructions that are automatically loaded an
 - **Work repositories**: `~/workspace/work/` - Most commonly used, contains work-related projects
 - **Personal repositories**: `~/workspace/personal/` - Contains personal projects
 
+### Frequently Used Repositories
+
+| Repository | Path | Description |
+|------------|------|-------------|
+| agents | `~/workspace/work/agents` | Slackbot framework and agent infrastructure |
+| kevin | `~/workspace/work/kevin` | Kevin - Cybersecurity Agent |
+
 ## CRITICAL: Git Commit Safety
 
 **NEVER commit any changes to git that look like secrets.**
