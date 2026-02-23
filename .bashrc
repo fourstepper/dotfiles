@@ -34,7 +34,7 @@ if [ "$(uname)" == "Darwin" ]; then
         source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
         # bash completion v2
     fi
-    [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
     # export homebrew sbin
     export PATH="/opt/homebrew/sbin:$PATH"
     # ruby environment manager
@@ -42,8 +42,6 @@ if [ "$(uname)" == "Darwin" ]; then
     eval "$(rbenv init -)"
 
      export NVM_DIR="$HOME/.nvm"
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
-    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 fi
 
 # ve <virtualenv name> activates the virtualenv
@@ -160,8 +158,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Lazy-load NVM — only initializes when nvm/node/npm/npx is first called
+_nvm_lazy_load() {
+    unset -f nvm node npm npx
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm() { _nvm_lazy_load; nvm "$@"; }
+node() { _nvm_lazy_load; node "$@"; }
+npm() { _nvm_lazy_load; npm "$@"; }
+npx() { _nvm_lazy_load; npx "$@"; }
 
 eval "$(direnv hook bash)"
