@@ -1,18 +1,18 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- Set SQLite library path for sqlite.lua plugin
-vim.g.sqlite_clib_path = '/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib'
+vim.g.sqlite_clib_path = "/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib"
 
 require("lazy").setup({
 	{
@@ -24,17 +24,43 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"L3MON4D3/LuaSnip",
+		"saghen/blink.cmp",
+		version = "1.*",
+		event = "InsertEnter",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
-			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-path",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-nvim-lsp",
+		},
+		opts = {
+			keymap = {
+				preset = "default",
+				["<CR>"] = { "accept", "fallback" },
+				["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+				["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+				["<C-u>"] = { "scroll_documentation_up" },
+				["<C-d>"] = { "scroll_documentation_down" },
+				["<C-e>"] = { "cancel" },
+			},
+			appearance = {
+				nerd_font_variant = "mono",
+			},
+			completion = {
+				ghost_text = { enabled = true },
+				documentation = { auto_show = true },
+				menu = { auto_show = true },
+				list = {
+					selection = {
+						preselect = true,
+						auto_insert = false,
+					},
+				},
+			},
+			sources = {
+				default = { "lsp", "path", "snippets" },
+			},
 		},
 	},
 	"NLKNguyen/papercolor-theme",
-	"xiyaowong/nvim-colorizer.lua",
+	{ "xiyaowong/nvim-colorizer.lua", event = "BufReadPost" },
 	"nvim-lualine/lualine.nvim",
 	{
 		"williamboman/mason.nvim",
@@ -46,107 +72,86 @@ require("lazy").setup({
 	},
 	"neovim/nvim-lspconfig",
 	"nvim-lua/plenary.nvim",
-	"nvim-telescope/telescope.nvim",
-	"nvim-telescope/telescope-fzy-native.nvim",
-	"nvim-telescope/telescope-smart-history.nvim",
+	{ "nvim-telescope/telescope.nvim", cmd = "Telescope", module = "telescope" },
+	{ "nvim-telescope/telescope-fzy-native.nvim", lazy = true },
+	{ "nvim-telescope/telescope-smart-history.nvim", lazy = true },
 	{
 		"otavioschwanck/arrow.nvim",
 		opts = {
 			show_icons = true,
-			leader_key = ";", -- Recommended to be a single key
+			leader_key = ";",
 		},
 	},
-	"tami5/sqlite.lua",
-	"lukas-reineke/indent-blankline.nvim",
+	{ "kkharji/sqlite.lua", lazy = true },
+	{ "lukas-reineke/indent-blankline.nvim", event = "BufReadPost" },
 	"tpope/vim-repeat",
 	"tpope/vim-sleuth",
-	"stevearc/oil.nvim",
-	"declancm/maximize.nvim",
+	{ "stevearc/oil.nvim", cmd = "Oil", keys = { { "<leader>f", "<cmd>Oil<CR>", desc = "Open parent directory" } } },
+	{ "declancm/maximize.nvim", keys = { { "<leader>m", "<cmd>Maximize<CR>" } } },
 	"tpope/vim-surround",
-	"tpope/vim-fugitive",
-	"tpope/vim-rhubarb",
-	"shumphrey/fugitive-gitlab.vim",
-	"lewis6991/gitsigns.nvim",
-	"wellle/targets.vim",
-	"windwp/nvim-autopairs",
-	"gaoDean/autolist.nvim",
+	{ "tpope/vim-fugitive", cmd = { "G", "Git", "GBrowse", "Gvdiffsplit" }, keys = { "<leader>gg", "<leader>ga", "<leader>gb" } },
+	{ "tpope/vim-rhubarb", lazy = true },
+	{ "shumphrey/fugitive-gitlab.vim", lazy = true },
+	{ "lewis6991/gitsigns.nvim", event = "BufReadPost" },
+	{ "wellle/targets.vim", event = "BufReadPost" },
+	{ "windwp/nvim-autopairs", event = "InsertEnter" },
+	{ "gaoDean/autolist.nvim", ft = { "markdown", "text" } },
 	"christoomey/vim-tmux-navigator",
-	"arouene/vim-ansible-vault",
-	"numToStr/Comment.nvim",
-	"tpope/vim-rails",
+	{ "arouene/vim-ansible-vault", cmd = { "AnsibleVault", "AnsibleUnvault" } },
+	{ "numToStr/Comment.nvim", event = "BufReadPost" },
+	{ "tpope/vim-rails", ft = { "ruby", "eruby" } },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		event = "BufReadPost",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"vrischmann/tree-sitter-templ",
 		},
 		build = ":TSUpdate",
 	},
-	"mhartington/formatter.nvim",
+	{
+		"stevearc/conform.nvim",
+		event = "BufWritePre",
+		opts = {
+			formatters_by_ft = {
+				terraform = { "terraform_fmt" },
+				json = { "prettierd" },
+				hcl = { "terraform_fmt" },
+				ruby = { "rubocop" },
+				python = { "black" },
+				go = { "gofmt" },
+				templ = { "templ" },
+				svelte = { "prettier" },
+				javascript = { "prettierd" },
+				typescript = { "prettierd" },
+				typescriptreact = { "prettierd" },
+				css = { "prettierd" },
+				markdown = { "prettierd" },
+				lua = { "stylua" },
+				html = { "prettierd" },
+				["*"] = { "trim_whitespace" },
+			},
+			format_on_save = {
+				timeout_ms = 3000,
+				lsp_format = "fallback",
+			},
+		},
+	},
 	{
 		"mfussenegger/nvim-dap",
+		keys = {
+			{ "<F5>", function() require("dap").continue() end },
+			{ "<leader>b", function() require("dap").toggle_breakpoint() end },
+		},
 		dependencies = {
 			"nvim-telescope/telescope-dap.nvim",
 			"leoluz/nvim-dap-go",
 			"mfussenegger/nvim-dap-python",
 		},
 	},
-	{ "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
 	{
-		"yetone/avante.nvim",
-		build = "make",
-		opts = {
-			provider = "claude",
-			cursor_applying_provider = "claude",
-			behavior = {
-				enable_cursor_planning_mode = true,
-				enable_claude_text_editor_tool_mode = true,
-			},
-			highlights = {
-				diff = {
-					current = "DiffText",
-					incoming = "DiffAdd",
-				},
-			},
-		},
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			--- The below dependencies are optional,
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
-			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
-					},
-				},
-			},
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					file_types = { "Avante" },
-				},
-				ft = { "Avante" },
-			},
-		},
+		"rcarriga/nvim-dap-ui",
+		keys = { { "<leader>du", function() require("dapui").toggle() end } },
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 	},
 })

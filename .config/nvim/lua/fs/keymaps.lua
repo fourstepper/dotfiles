@@ -1,77 +1,55 @@
-local function keymap(mode, lhs, rhs, opts)
-	local options = { noremap = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local map = vim.keymap.set
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
--- Make S-Tab unindent in normal mode
-keymap("i", "<S-Tab>", "<C-d>")
+-- Make S-Tab unindent in insert mode
+map("i", "<S-Tab>", "<C-d>")
 -- Make Y yank to end of the line
-keymap("n", "Y", "y$")
+map("n", "Y", "y$")
 -- Don't lose paste content when replacing something
-keymap("x", "<leader>p", '"_dP')
+map("x", "<leader>p", '"_dP')
 -- Make new horizontal split and switch over to it
-keymap("n", "<leader>w", "<C-w><C-s><C-w>j")
+map("n", "<leader>w", "<C-w><C-s><C-w>j")
 -- Make new vertical split and switch over to it
-keymap("n", "<leader>v", "<C-w><C-v><C-w>l")
--- Navigate Vim buffers easier
-keymap("n", "<M-j>", "<C-W><C-J>", { silent = true })
-keymap("n", "<M-k>", "<C-W><C-K>", { silent = true })
-keymap("n", "<M-l>", "<C-W><C-L>", { silent = true })
-keymap("n", "<M-h>", "<C-W><C-H>", { silent = true })
--- Ansible-vault-inline to ,v
-keymap("n", "<leader>ave", ":AnsibleVault <CR>", { silent = true })
-keymap("n", "<leader>avd", ":AnsibleUnvault <CR>", { silent = true })
--- Harpoon
--- Git merge resolution
-keymap("n", "<leader>gj", ":diffget //3<CR>")
-keymap("n", "<leader>gf", ":diffget //2<CR>")
+map("n", "<leader>v", "<C-w><C-v><C-w>l")
 -- Tmux mappings for switching between nvim and tmux seamlessly
-keymap("n", "<M-h>", ":TmuxNavigateLeft<CR>", { silent = true })
-keymap("n", "<M-j>", ":TmuxNavigateDown<CR>", { silent = true })
-keymap("n", "<M-k>", ":TmuxNavigateUp<CR>", { silent = true })
-keymap("n", "<M-l>", ":TmuxNavigateRight<CR>", { silent = true })
--- telescope
-keymap("n", "<C-p>", "<cmd>lua require('telescope.builtin').find_files{ hidden=true, no_ignore=true }<CR>")
-keymap("n", "<C-g>", "<cmd>lua require('telescope.builtin').live_grep()<CR>")
-keymap("n", "<C-h>", "<cmd>lua require('telescope.builtin').command_history()<CR>")
-keymap("n", "<leader>gc", "<cmd>lua require('telescope.builtin').git_commits()<CR>")
-keymap("n", "<leader>km", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
+map("n", "<M-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true })
+map("n", "<M-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true })
+map("n", "<M-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true })
+map("n", "<M-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
+-- Ansible-vault
+map("n", "<leader>ave", "<cmd>AnsibleVault<CR>", { silent = true })
+map("n", "<leader>avd", "<cmd>AnsibleUnvault<CR>", { silent = true })
+-- Git merge resolution
+map("n", "<leader>gj", "<cmd>diffget //3<CR>")
+map("n", "<leader>gf", "<cmd>diffget //2<CR>")
+-- Telescope
+map("n", "<C-p>", function() require("telescope.builtin").find_files({ hidden = true, no_ignore = true }) end)
+map("n", "<C-g>", function() require("telescope.builtin").live_grep() end)
+map("n", "<C-h>", function() require("telescope.builtin").command_history() end)
+map("n", "<leader>gc", function() require("telescope.builtin").git_commits() end)
+map("n", "<leader>km", function() require("telescope.builtin").keymaps() end)
 -- Git
-keymap("n", "<leader>gg", ":G<CR>")
-keymap("n", "<leader>ga", ":G ")
-keymap("n", "<leader>gb", ":GBrowse<CR>")
-keymap("v", "<leader>gb", ":GBrowse<CR>")
--- LSP mappings
-keymap("n", "gd", "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>")
-keymap("n", "gr", "<cmd>lua require('telescope.builtin').lsp_references()<CR>")
-keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", "<leader>gg", "<cmd>G<CR>")
+map("n", "<leader>ga", ":G ")
+map("n", "<leader>gb", "<cmd>GBrowse<CR>")
+map("v", "<leader>gb", ":GBrowse<CR>")
+-- LSP
+map("n", "gd", function() require("telescope.builtin").lsp_definitions() end)
+map("n", "gr", function() require("telescope.builtin").lsp_references() end)
+map("n", "K", function() vim.lsp.buf.hover() end)
 -- Diagnostics
-keymap("n", "<leader>xd", "<cmd>lua require('telescope.builtin').diagnostics({bufnr=0})<CR>")
-keymap("n", "<leader>xw", "<cmd>lua require('telescope.builtin').diagnostics()<CR>")
+map("n", "<leader>xd", function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end)
+map("n", "<leader>xw", function() require("telescope.builtin").diagnostics() end)
 -- Debugging
-keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>")
-keymap("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>")
-keymap("n", "<F11>", "<Cmd>lua require'dap'.step_into()<CR>")
-keymap("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>")
-keymap("n", "<leader>b", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
-keymap("n", "<leader>B", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-keymap("n", "<leader>lp", "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>")
-keymap("n", "<leader>dr", "<Cmd>lua require'dap'.repl.open()<CR>")
-keymap("n", "<leader>dl", "<Cmd>lua require'dap'.run_last()<CR>")
-keymap("n", "<leader>dq", "<Cmd>lua require'dap'.terminate()<CR>")
-keymap("n", "<leader>du", "<Cmd> lua require'dapui'.toggle()<CR>")
--- oil.nvim like vim-vinegar
-keymap("n", "<leader>f", "<CMD>Oil<CR>", { desc = "Open parent directory" }, { silent = true })
--- avante.nvim
-keymap("n", "<leader>cc", ":AvanteClear<CR>", { silent = true })
+map("n", "<F5>", function() require("dap").continue() end)
+map("n", "<F10>", function() require("dap").step_over() end)
+map("n", "<F11>", function() require("dap").step_into() end)
+map("n", "<F12>", function() require("dap").step_out() end)
+map("n", "<leader>b", function() require("dap").toggle_breakpoint() end)
+map("n", "<leader>B", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end)
+map("n", "<leader>lp", function() require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: ")) end)
+map("n", "<leader>dr", function() require("dap").repl.open() end)
+map("n", "<leader>dl", function() require("dap").run_last() end)
+map("n", "<leader>dq", function() require("dap").terminate() end)
+map("n", "<leader>du", function() require("dapui").toggle() end)
+-- Oil
+map("n", "<leader>f", "<cmd>Oil<CR>", { desc = "Open parent directory" })
