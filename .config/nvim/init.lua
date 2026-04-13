@@ -1,3 +1,4 @@
+vim.loader.enable()
 require("fs.options")
 require("fs.keymaps")
 require("fs.plugins")
