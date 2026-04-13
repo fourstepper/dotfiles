@@ -24,7 +24,7 @@ end
 mason_tool_installer.setup({
 	ensure_installed = {
 		-- LSP
-		-- handled by mason-lspconfig
+		"lua-language-server",
 		-- FORMATTING
 		"stylua",
 		"black",

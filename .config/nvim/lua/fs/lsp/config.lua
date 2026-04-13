@@ -1,8 +1,37 @@
-local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+-- blink.cmp augments capabilities automatically when available
+local has_blink, blink = pcall(require, "blink.cmp")
+if has_blink then
+	capabilities = blink.get_lsp_capabilities(capabilities)
+end
 
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-vim.lsp.config('pylsp', {
+local servers = {
+	"pylsp",
+	"gopls",
+	"templ",
+	"ansiblels",
+	"dockerls",
+	"jsonls",
+	"html",
+	"cssls",
+	"tailwindcss",
+	"eslint",
+	"ts_ls",
+	"svelte",
+	"bashls",
+	"terraformls",
+	"lua_ls",
+}
+
+for _, server in ipairs(servers) do
+	vim.lsp.config(server, { capabilities = capabilities })
+end
+
+-- Server-specific overrides
+vim.lsp.config("pylsp", {
 	capabilities = capabilities,
 	settings = {
 		pylsp = {
@@ -11,23 +40,24 @@ vim.lsp.config('pylsp', {
 					include_params = true,
 				},
 				pycodestyle = {
-					-- ignore max line length
 					ignore = { "E501" },
 				},
 			},
 		},
 	},
 })
-vim.lsp.config('gopls', { capabilities = capabilities })
-vim.lsp.config('templ', { capabilities = capabilities })
-vim.lsp.config('ansiblels', { capabilities = capabilities })
-vim.lsp.config('dockerls', { capabilities = capabilities })
-vim.lsp.config('jsonls', { capabilities = capabilities })
-vim.lsp.config('html', { capabilities = capabilities })
-vim.lsp.config('cssls', { capabilities = capabilities })
-vim.lsp.config('tailwindcss', { capabilities = capabilities })
-vim.lsp.config('eslint', { capabilities = capabilities })
-vim.lsp.config('ts_ls', { capabilities = capabilities })
-vim.lsp.config('svelte', { capabilities = capabilities })
-vim.lsp.config('bashls', { capabilities = capabilities })
-vim.lsp.config('terraformls', { capabilities = capabilities })
+
+vim.lsp.config("lua_ls", {
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			runtime = { version = "LuaJIT" },
+			workspace = {
+				checkThirdParty = false,
+				library = { vim.env.VIMRUNTIME },
+			},
+		},
+	},
+})
+
+vim.lsp.enable(servers)

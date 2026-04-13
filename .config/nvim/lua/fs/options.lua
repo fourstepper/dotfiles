@@ -41,7 +41,7 @@ local options = {
 	showcmd = true,
 	-- Undo history!
 	undofile = true,
-	undodir = { vim.fn.stdpath("config") .. "/undo" },
+	undodir = { vim.fn.stdpath("state") .. "/undo" },
 	undolevels = 1000,
 	undoreload = 10000,
 }
