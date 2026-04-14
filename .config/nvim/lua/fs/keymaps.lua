@@ -27,11 +27,6 @@ map("n", "<C-g>", function() require("telescope.builtin").live_grep() end)
 map("n", "<C-h>", function() require("telescope.builtin").command_history() end)
 map("n", "<leader>gc", function() require("telescope.builtin").git_commits() end)
 map("n", "<leader>km", function() require("telescope.builtin").keymaps() end)
--- Git
-map("n", "<leader>gg", "<cmd>G<CR>")
-map("n", "<leader>ga", ":G ")
-map("n", "<leader>gb", "<cmd>GBrowse<CR>")
-map("v", "<leader>gb", ":GBrowse<CR>")
 -- LSP
 map("n", "gd", function() require("telescope.builtin").lsp_definitions() end)
 map("n", "gr", function() require("telescope.builtin").lsp_references() end)
