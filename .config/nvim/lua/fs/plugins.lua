@@ -89,7 +89,16 @@ require("lazy").setup({
 	{ "stevearc/oil.nvim", cmd = "Oil", keys = { { "<leader>f", "<cmd>Oil<CR>", desc = "Open parent directory" } } },
 	{ "declancm/maximize.nvim", keys = { { "<leader>m", "<cmd>Maximize<CR>" } } },
 	"tpope/vim-surround",
-	{ "tpope/vim-fugitive", cmd = { "G", "Git", "GBrowse", "Gvdiffsplit" }, keys = { "<leader>gg", "<leader>ga", "<leader>gb" } },
+	{
+		"tpope/vim-fugitive",
+		cmd = { "G", "Git", "GBrowse", "Gvdiffsplit" },
+		keys = {
+			{ "<leader>gg", "<cmd>G<CR>" },
+			{ "<leader>ga", ":G ", desc = "Git command" },
+			{ "<leader>gb", "<cmd>GBrowse<CR>" },
+			{ "<leader>gb", ":GBrowse<CR>", mode = "v" },
+		},
+	},
 	{ "tpope/vim-rhubarb", lazy = true },
 	{ "shumphrey/fugitive-gitlab.vim", lazy = true },
 	{ "lewis6991/gitsigns.nvim", event = "BufReadPost" },
