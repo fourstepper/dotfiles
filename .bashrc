@@ -37,9 +37,24 @@ if [ "$(uname)" == "Darwin" ]; then
     [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
     # export homebrew sbin
     export PATH="/opt/homebrew/sbin:$PATH"
-    # ruby environment manager
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
+    # ruby environment manager — inlined from `rbenv init - --no-rehash bash`
+    # to avoid ~3s subprocess cost on every shell start
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+    export RBENV_SHELL=bash
+    source '/opt/homebrew/Cellar/rbenv/1.3.2/completions/rbenv.bash'
+    rbenv() {
+      local command
+      command="${1:-}"
+      if [ "$#" -gt 0 ]; then
+        shift
+      fi
+      case "$command" in
+      rehash|shell)
+        eval "$(rbenv "sh-$command" "$@")";;
+      *)
+        command rbenv "$command" "$@";;
+      esac
+    }
 
      export NVM_DIR="$HOME/.nvm"
 fi
