@@ -60,7 +60,7 @@ require("lazy").setup({
 		},
 	},
 	"NLKNguyen/papercolor-theme",
-	{ "xiyaowong/nvim-colorizer.lua", event = "BufReadPost" },
+	{ "catgoose/nvim-colorizer.lua", event = "BufReadPost" },
 	"nvim-lualine/lualine.nvim",
 	{
 		"williamboman/mason.nvim",
@@ -111,6 +111,7 @@ require("lazy").setup({
 	{ "tpope/vim-rails", ft = { "ruby", "eruby" } },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		event = "BufReadPost",
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
