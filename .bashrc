@@ -159,6 +159,7 @@ alias v='nvim'
 alias cds='cd ~/workspace/'
 alias cdw='cd ~/workspace/work/'
 alias cdp='cd ~/workspace/personal/'
+alias cdi='~/Library/Mobile Documents/com~apple~CloudDocs'
 alias randompass='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;'
 alias ca='cursor-agent'
 
