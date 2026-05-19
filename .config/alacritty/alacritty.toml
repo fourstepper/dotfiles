@@ -181,3 +181,8 @@ mods = "Command"
 
 [general]
 import = ["~/.config/alacritty/themes/papercolor-light.toml"]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
