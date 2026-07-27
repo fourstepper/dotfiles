@@ -67,9 +67,6 @@ keybinds clear-defaults=true {
             }
         }
     }
-    locked {
-        bind "Ctrl g" { SwitchToMode "normal"; }
-    }
     scroll {
         bind "/" { SwitchToMode "entersearch"; SearchInput 0; }
         bind "Ctrl b" { PageScrollUp; }
@@ -81,10 +78,6 @@ keybinds clear-defaults=true {
     search {
         bind "n" { Search "down"; }
         bind "p" { Search "up"; }
-    }
-    shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "Ctrl q" { Quit; }
     }
     shared_among "scroll" "search" {
         bind "q" { SwitchToMode "normal"; }
@@ -137,12 +130,12 @@ themes {
             emphasis_3 137 89 168
         }
         text_selected {
-            base 77 77 76
-            background 238 238 238
-            emphasis_0 215 95 0
-            emphasis_1 62 153 159
-            emphasis_2 113 140 0
-            emphasis_3 137 89 168
+            base 238 238 238
+            background 66 113 174
+            emphasis_0 255 175 95
+            emphasis_1 175 215 255
+            emphasis_2 215 255 175
+            emphasis_3 215 175 255
         }
         ribbon_selected {
             base 238 238 238
@@ -169,12 +162,12 @@ themes {
             emphasis_3 137 89 168
         }
         table_cell_selected {
-            base 77 77 76
-            background 238 238 238
-            emphasis_0 215 95 0
-            emphasis_1 62 153 159
-            emphasis_2 113 140 0
-            emphasis_3 137 89 168
+            base 238 238 238
+            background 66 113 174
+            emphasis_0 255 175 95
+            emphasis_1 175 215 255
+            emphasis_2 215 255 175
+            emphasis_3 215 175 255
         }
         table_cell_unselected {
             base 77 77 76
@@ -185,12 +178,12 @@ themes {
             emphasis_3 137 89 168
         }
         list_selected {
-            base 77 77 76
-            background 238 238 238
-            emphasis_0 215 95 0
-            emphasis_1 62 153 159
-            emphasis_2 113 140 0
-            emphasis_3 137 89 168
+            base 238 238 238
+            background 66 113 174
+            emphasis_0 255 175 95
+            emphasis_1 175 215 255
+            emphasis_2 215 255 175
+            emphasis_3 215 175 255
         }
         list_unselected {
             base 77 77 76
