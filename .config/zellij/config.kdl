@@ -538,7 +538,7 @@ show_startup_tips false
  
 // Whether to enable mouse hover visual effects (frame highlight and help text)
 // default is true
-// mouse_hover_effects false
+mouse_hover_effects false
  
 // Whether to show visual bell indicators (pane/tab frame flash and [!] suffix)
 // default is true
