@@ -49,12 +49,12 @@ keybinds clear-defaults=true {
                 move_mod "ctrl"
             }
         }
-        // Alt-o = fzf session picker (like tmux M-o popup). Most-recent other
+        // Alt-o = fzf session picker (like tmux M-o popup). Last-visited other
         // session on top and pre-highlighted, so Enter switches to it. Current
         // session excluded. tab/shift-tab to move, type to filter. Type a name
         // with no match + Enter to create+switch to a new session.
         bind "Alt o" {
-            Run "bash" "-c" "out=$(zellij ls -rn | grep -v 'EXITED' | grep -v '(current)' | awk '{print $1}' | fzf --reverse --no-sort --cycle --print-query --header=jump-to-session --bind=shift-tab:up,tab:down); q=$(printf '%s\\n' \"$out\" | head -n1); s=$(printf '%s\\n' \"$out\" | tail -n +2); name=${s:-$q}; [ -n \"$name\" ] && zellij action switch-session \"$name\"" {
+            Run "bash" "/Users/robinopletal/.config/zellij/session-jump.sh" {
                 floating true
                 close_on_exit true
                 name "jump-to-session"
