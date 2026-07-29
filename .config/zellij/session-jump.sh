@@ -41,14 +41,16 @@ by_recency() {
     grep -vxF -f "$seen" "$names"
 }
 
-# Pad names so the `exited` tags line up in one column.
+# Pad names so the `exited` tags line up in one column. The tag is greyed with
+# an explicit 256-color grey rather than SGR 2 (dim), which does not survive
+# zellij's pass-through to the terminal.
 width=$(awk '{ if (length > w) w = length } END { print w + 0 }' "$tmp/live" "$tmp/dead")
 
 out=$(
     {
         by_recency "$tmp/live"
         by_recency "$tmp/dead" |
-            awk -v w="$width" '{ printf "%-*s  \033[2mexited\033[0m\n", w, $0 }'
+            awk -v w="$width" '{ printf "%-*s  \033[38;5;245mexited\033[0m\n", w, $0 }'
     } |
         fzf --ansi --reverse --no-sort --cycle --print-query \
             --header=jump-to-session --bind=shift-tab:up,tab:down
