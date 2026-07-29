@@ -272,6 +272,14 @@ plugins {
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
     zellij:link
+    // zellij-attention: appends ⏳/✅ to tab names when a pane wants attention
+    // (driven by Claude Code Notification/Stop hooks in ~/.claude/settings.json).
+    // Icon clears when the pane is focused.
+    "file:/Users/robinopletal/.config/zellij/plugins/zellij-attention.wasm" {
+        enabled "true"
+        waiting_icon "⏳"
+        completed_icon "✅"
+    }
 }
 web_client {
     font "monospace"
