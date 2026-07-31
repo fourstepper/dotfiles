@@ -107,9 +107,39 @@ keybinds clear-defaults=true {
         bind ">" { MoveTab "right"; }
         // Space = next layout, like tmux's prefix + space. Cycles the
         // swap_tiled_layouts of ~/.config/zellij/layouts/fibonacci.kdl:
-        // fibonacci -> master-stack -> even-columns -> even-rows.
-        bind "space" { NextSwapLayout; SwitchToMode "normal"; }
-        bind "Alt space" { PreviousSwapLayout; SwitchToMode "normal"; }
+        // fibonacci -> even-columns -> even-rows.
+        //
+        // Zellij assigns layout slots in pane order, so the focused pane is
+        // first walked into the leftmost (master) slot: MovePane "left" swaps
+        // with the pane to its left and no-ops once there is none, and five
+        // hops clear the deepest slot of any of those layouts.
+        bind "space" {
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            NextSwapLayout
+            SwitchToMode "normal"
+        }
+        bind "Alt space" {
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            PreviousSwapLayout
+            SwitchToMode "normal"
+        }
+        // Enter = promote the focused pane to master, layout unchanged.
+        bind "enter" {
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            MovePane "left"
+            SwitchToMode "normal"
+        }
         bind "[" { SwitchToMode "scroll"; }
         bind "Ctrl a" { Write 1; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
