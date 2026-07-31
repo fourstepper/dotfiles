@@ -130,8 +130,10 @@ layout {
         }
     }
 
-    // Remaining entries are what `Ctrl-a space` cycles into.
-    swap_tiled_layout name="even-columns" {
+    // Uncomment either of these to give `Ctrl-a space` something to cycle
+    // into; with fibonacci alone the bind only promotes the focused pane.
+    // /- is KDL's slashdash: it comments out the whole node that follows.
+    /-swap_tiled_layout name="even-columns" {
         ui min_panes=2 {
             pane split_direction="vertical" {
                 children
@@ -139,7 +141,7 @@ layout {
         }
     }
 
-    swap_tiled_layout name="even-rows" {
+    /-swap_tiled_layout name="even-rows" {
         ui min_panes=2 {
             pane {
                 children
