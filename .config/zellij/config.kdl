@@ -105,6 +105,11 @@ keybinds clear-defaults=true {
         }
         bind "<" { MoveTab "left"; }
         bind ">" { MoveTab "right"; }
+        // Space = next layout, like tmux's prefix + space. Cycles the
+        // swap_tiled_layouts of ~/.config/zellij/layouts/fibonacci.kdl:
+        // fibonacci -> master-stack -> even-columns -> even-rows.
+        bind "space" { NextSwapLayout; SwitchToMode "normal"; }
+        bind "Alt space" { PreviousSwapLayout; SwitchToMode "normal"; }
         bind "[" { SwitchToMode "scroll"; }
         bind "Ctrl a" { Write 1; SwitchToMode "normal"; }
         bind "c" { NewTab; SwitchToMode "normal"; }
@@ -335,8 +340,10 @@ default_mode "normal"
  
 // The name of the default layout to load on startup
 // Default: "default"
-// 
-// default_layout "compact"
+//
+// layouts/fibonacci.kdl: master pane on the left half, the rest spiralling
+// through the right half. `Ctrl-a space` cycles its other swap layouts.
+default_layout "fibonacci"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
