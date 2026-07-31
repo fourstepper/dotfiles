@@ -3,8 +3,9 @@
 //
 // The first pane in the tab owns the left half; every pane after it spirals
 // through the right half, alternating split direction. Zellij fills these
-// slots in pane order, not focus order, so use `Ctrl-a H` (MovePane "left")
-// to promote the pane you care about into the master slot.
+// slots in pane order rather than focus order, so `Ctrl-a space` and
+// `Ctrl-a enter` first walk the focused pane leftwards into the master slot
+// (see the MovePane binds in config.kdl).
 layout {
     tab_template name="ui" {
         pane size=1 borderless=true {
@@ -83,17 +84,45 @@ layout {
                 }
             }
         }
-        // Past six panes the spiral leaves get unreadably small, so the tail
-        // of the spiral becomes a stack instead of splitting further.
-        ui min_panes=7 {
+        ui exact_panes=7 {
             pane split_direction="vertical" {
                 pane
                 pane {
                     pane
                     pane split_direction="vertical" {
                         pane
-                        pane stacked=true {
-                            children
+                        pane {
+                            pane
+                            pane split_direction="vertical" {
+                                pane
+                                pane {
+                                    pane
+                                    pane
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Seven splits deep is past what zellij will place - it drops such a
+        // layout and falls back - so from eight panes on the spiral stops
+        // deepening and its tail splits evenly instead.
+        ui min_panes=8 {
+            pane split_direction="vertical" {
+                pane
+                pane {
+                    pane
+                    pane split_direction="vertical" {
+                        pane
+                        pane {
+                            pane
+                            pane split_direction="vertical" {
+                                pane
+                                pane {
+                                    children
+                                }
+                            }
                         }
                     }
                 }
@@ -102,17 +131,6 @@ layout {
     }
 
     // Remaining entries are what `Ctrl-a space` cycles into.
-    swap_tiled_layout name="master-stack" {
-        ui min_panes=2 {
-            pane split_direction="vertical" {
-                pane
-                pane stacked=true {
-                    children
-                }
-            }
-        }
-    }
-
     swap_tiled_layout name="even-columns" {
         ui min_panes=2 {
             pane split_direction="vertical" {
