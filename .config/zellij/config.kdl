@@ -113,6 +113,12 @@ keybinds clear-defaults=true {
         bind "j" { Resize "Increase down"; }
         bind "k" { Resize "Increase up"; }
         bind "l" { Resize "Increase right"; }
+        // Shift-HJKL = swap pane in that direction (like <C-w>HJKL in vim).
+        // Stays in tmux mode so moves can be repeated.
+        bind "H" { MovePane "left"; }
+        bind "J" { MovePane "down"; }
+        bind "K" { MovePane "up"; }
+        bind "L" { MovePane "right"; }
         bind "v" { NewPane "right"; SwitchToMode "normal"; }
         bind "w" { NewPane "down"; SwitchToMode "normal"; }
         bind "x" { CloseFocus; SwitchToMode "normal"; }
