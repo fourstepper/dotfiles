@@ -1,0 +1,131 @@
+// Master-left + fibonacci-spiral tiling, cycled with `Ctrl-a space`
+// (NextSwapLayout) the way `prefix + space` cycles layouts in tmux.
+//
+// The first pane in the tab owns the left half; every pane after it spirals
+// through the right half, alternating split direction. Zellij fills these
+// slots in pane order, not focus order, so use `Ctrl-a H` (MovePane "left")
+// to promote the pane you care about into the master slot.
+layout {
+    tab_template name="ui" {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    ui {
+        pane
+    }
+
+    swap_tiled_layout name="fibonacci" {
+        ui exact_panes=1 {
+            pane
+        }
+        ui exact_panes=2 {
+            pane split_direction="vertical" {
+                pane
+                pane
+            }
+        }
+        ui exact_panes=3 {
+            pane split_direction="vertical" {
+                pane
+                pane {
+                    pane
+                    pane
+                }
+            }
+        }
+        ui exact_panes=4 {
+            pane split_direction="vertical" {
+                pane
+                pane {
+                    pane
+                    pane split_direction="vertical" {
+                        pane
+                        pane
+                    }
+                }
+            }
+        }
+        ui exact_panes=5 {
+            pane split_direction="vertical" {
+                pane
+                pane {
+                    pane
+                    pane split_direction="vertical" {
+                        pane
+                        pane {
+                            pane
+                            pane
+                        }
+                    }
+                }
+            }
+        }
+        ui exact_panes=6 {
+            pane split_direction="vertical" {
+                pane
+                pane {
+                    pane
+                    pane split_direction="vertical" {
+                        pane
+                        pane {
+                            pane
+                            pane split_direction="vertical" {
+                                pane
+                                pane
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Past six panes the spiral leaves get unreadably small, so the tail
+        // of the spiral becomes a stack instead of splitting further.
+        ui min_panes=7 {
+            pane split_direction="vertical" {
+                pane
+                pane {
+                    pane
+                    pane split_direction="vertical" {
+                        pane
+                        pane stacked=true {
+                            children
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Remaining entries are what `Ctrl-a space` cycles into.
+    swap_tiled_layout name="master-stack" {
+        ui min_panes=2 {
+            pane split_direction="vertical" {
+                pane
+                pane stacked=true {
+                    children
+                }
+            }
+        }
+    }
+
+    swap_tiled_layout name="even-columns" {
+        ui min_panes=2 {
+            pane split_direction="vertical" {
+                children
+            }
+        }
+    }
+
+    swap_tiled_layout name="even-rows" {
+        ui min_panes=2 {
+            pane {
+                children
+            }
+        }
+    }
+}
