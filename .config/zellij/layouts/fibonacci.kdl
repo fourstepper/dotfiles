@@ -7,7 +7,7 @@
 // `Ctrl-a enter` first walk the focused pane leftwards into the master slot
 // (see the MovePane binds in config.kdl).
 layout {
-    tab_template name="ui" {
+    default_tab_template {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
@@ -16,21 +16,21 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    ui {
+    tab {
         pane
     }
 
     swap_tiled_layout name="fibonacci" {
-        ui exact_panes=1 {
+        tab exact_panes=1 {
             pane
         }
-        ui exact_panes=2 {
+        tab exact_panes=2 {
             pane split_direction="vertical" {
                 pane
                 pane
             }
         }
-        ui exact_panes=3 {
+        tab exact_panes=3 {
             pane split_direction="vertical" {
                 pane
                 pane {
@@ -39,7 +39,7 @@ layout {
                 }
             }
         }
-        ui exact_panes=4 {
+        tab exact_panes=4 {
             pane split_direction="vertical" {
                 pane
                 pane {
@@ -51,7 +51,7 @@ layout {
                 }
             }
         }
-        ui exact_panes=5 {
+        tab exact_panes=5 {
             pane split_direction="vertical" {
                 pane
                 pane {
@@ -66,7 +66,7 @@ layout {
                 }
             }
         }
-        ui exact_panes=6 {
+        tab exact_panes=6 {
             pane split_direction="vertical" {
                 pane
                 pane {
@@ -84,7 +84,7 @@ layout {
                 }
             }
         }
-        ui exact_panes=7 {
+        tab exact_panes=7 {
             pane split_direction="vertical" {
                 pane
                 pane {
@@ -108,7 +108,7 @@ layout {
         // Seven splits deep is past what zellij will place - it drops such a
         // layout and falls back - so from eight panes on the spiral stops
         // deepening and its tail splits evenly instead.
-        ui min_panes=8 {
+        tab min_panes=8 {
             pane split_direction="vertical" {
                 pane
                 pane {
@@ -134,7 +134,7 @@ layout {
     // into; with fibonacci alone the bind only promotes the focused pane.
     // /- is KDL's slashdash: it comments out the whole node that follows.
     /-swap_tiled_layout name="even-columns" {
-        ui min_panes=2 {
+        tab min_panes=2 {
             pane split_direction="vertical" {
                 children
             }
@@ -142,7 +142,7 @@ layout {
     }
 
     /-swap_tiled_layout name="even-rows" {
-        ui min_panes=2 {
+        tab min_panes=2 {
             pane {
                 children
             }
