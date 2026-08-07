@@ -77,6 +77,7 @@ require("lazy").setup({
 	{ "nvim-telescope/telescope-smart-history.nvim", lazy = true },
 	{
 		"otavioschwanck/arrow.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			show_icons = true,
 			leader_key = ";",
