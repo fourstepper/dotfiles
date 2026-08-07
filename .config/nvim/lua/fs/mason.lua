@@ -25,6 +25,7 @@ mason_tool_installer.setup({
 	ensure_installed = {
 		-- LSP
 		"lua-language-server",
+		"gopls",
 		-- FORMATTING
 		"stylua",
 		"black",
