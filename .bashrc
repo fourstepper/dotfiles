@@ -167,3 +167,64 @@ npm() { _nvm_lazy_load; npm "$@"; }
 npx() { _nvm_lazy_load; npx "$@"; }
 
 eval "$(direnv hook bash)"
+
+# Dynamic zellij tab names: a tab is renamed to whatever command its pane
+# starts, and falls back to the pane's directory once that command finishes.
+#
+# `zellij action rename-tab` targets the *focused* tab - a pane cannot address
+# the tab it lives in from the inside - so the reset is skipped for anything
+# that ran longer than __ZELLIJ_TAB_IDLE_AFTER seconds: by then the pane may be
+# in a tab that is no longer on screen, and renaming would hit the wrong tab.
+# Such a tab keeps the command name until the next command runs in it.
+#
+# Keep this block last in ~/.bashrc: __zellij_tab_idle has to be the final
+# PROMPT_COMMAND entry (direnv above appends one too), otherwise the DEBUG trap
+# fires for the prompt hooks themselves instead of for real commands.
+if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
+    __ZELLIJ_TAB_IDLE_AFTER=10
+    # Commands too generic or too short-lived to be worth a tab name.
+    __ZELLIJ_TAB_SKIP=" cd ls ll la clear pwd echo export unset which type source . "
+
+    __zellij_tab_rename() {
+        [ "$1" = "${__zellij_tab_name:-}" ] && return
+        __zellij_tab_name=$1
+        zellij action rename-tab "$1" >/dev/null 2>&1 &
+    }
+
+    # DEBUG trap, acts on the first command of each prompt line only.
+    __zellij_tab_busy() {
+        [ -n "${__zellij_tab_armed:-}" ] || return
+        [ -n "${COMP_LINE:-}" ] && return
+        __zellij_tab_armed=
+        __zellij_tab_started=$SECONDS
+        local word cmd=
+        for word in $BASH_COMMAND; do
+            case $word in
+                *=*|sudo|doas|env|command|time|builtin|exec|nohup) continue ;;
+            esac
+            cmd=${word##*/}
+            break
+        done
+        [ -n "$cmd" ] || return
+        case $__ZELLIJ_TAB_SKIP in
+            *" $cmd "*) return ;;
+        esac
+        __zellij_tab_rename "$cmd"
+    }
+
+    # Last PROMPT_COMMAND entry: the command is done, so go back to the cwd.
+    __zellij_tab_idle() {
+        local elapsed=0
+        if [ -n "${__zellij_tab_started:-}" ]; then
+            elapsed=$(( SECONDS - __zellij_tab_started ))
+            __zellij_tab_started=
+        fi
+        __zellij_tab_armed=1
+        [ "$elapsed" -gt "$__ZELLIJ_TAB_IDLE_AFTER" ] && return
+        local dir=${PWD##*/}
+        __zellij_tab_rename "${dir:-/}"
+    }
+
+    trap '__zellij_tab_busy' DEBUG
+    PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}__zellij_tab_idle"
+fi

@@ -6,6 +6,10 @@ keybinds clear-defaults=true {
     normal {
         bind "Ctrl Shift left" { MoveTab "left"; }
         bind "Ctrl Shift right" { MoveTab "right"; }
+        // Alt-t = new tab. Alacritty sends this for Cmd-T (see
+        // ~/.config/alacritty/alacritty.toml) so that Cmd-T makes a zellij
+        // tab instead of a native Alacritty one.
+        bind "Alt t" { NewTab; }
         bind "Alt 1" { GoToTab 1; }
         bind "Alt 2" { GoToTab 2; }
         bind "Alt 3" { GoToTab 3; }

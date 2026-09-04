@@ -190,3 +190,10 @@ import = ["~/.config/alacritty/themes/papercolor-light.toml"]
 key = "Return"
 mods = "Shift"
 chars = "\u001B\r"
+
+# Cmd-T is kept out of Alacritty's own tab handling: it sends Alt-t into the
+# terminal, where zellij binds it to NewTab. Zellij owns tabs here.
+[[keyboard.bindings]]
+chars = "\u001Bt"
+key = "T"
+mods = "Command"
