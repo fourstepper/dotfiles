@@ -188,7 +188,10 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
     __zellij_tab_rename() {
         [ "$1" = "${__zellij_tab_name:-}" ] && return
         __zellij_tab_name=$1
-        zellij action rename-tab "$1" >/dev/null 2>&1 &
+        # Backgrounded so the IPC round-trip never stalls the prompt, inside a
+        # subshell so the job lands in that subshell's job table instead of the
+        # interactive shell's - otherwise bash prints "[1]+ Done ..." every time.
+        ( zellij action rename-tab "$1" >/dev/null 2>&1 & )
     }
 
     # DEBUG trap, acts on the first command of each prompt line only.
