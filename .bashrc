@@ -168,8 +168,8 @@ npx() { _nvm_lazy_load; npx "$@"; }
 
 eval "$(direnv hook bash)"
 
-# Dynamic zellij tab names: a tab is renamed to whatever command its pane
-# starts, and falls back to the pane's directory once that command finishes.
+# Dynamic zellij tab names: a tab is named "<command> / <path>" for whatever
+# command its pane starts, and drops back to the path once that command is done.
 #
 # `zellij action rename-tab` targets the *focused* tab - a pane cannot address
 # the tab it lives in from the inside - so the reset is skipped for anything
@@ -184,6 +184,11 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
     __ZELLIJ_TAB_IDLE_AFTER=10
     # Commands too generic or too short-lived to be worth a tab name.
     __ZELLIJ_TAB_SKIP=" cd ls ll la clear pwd echo export unset which type source . "
+
+    __zellij_tab_path() {
+        local path=${PWD/#$HOME/\~}
+        printf '%s' "${path:-/}"
+    }
 
     __zellij_tab_rename() {
         [ "$1" = "${__zellij_tab_name:-}" ] && return
@@ -212,7 +217,7 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
         case $__ZELLIJ_TAB_SKIP in
             *" $cmd "*) return ;;
         esac
-        __zellij_tab_rename "$cmd"
+        __zellij_tab_rename "$cmd / $(__zellij_tab_path)"
     }
 
     # Last PROMPT_COMMAND entry: the command is done, so go back to the cwd.
@@ -224,8 +229,7 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
         fi
         __zellij_tab_armed=1
         [ "$elapsed" -gt "$__ZELLIJ_TAB_IDLE_AFTER" ] && return
-        local dir=${PWD##*/}
-        __zellij_tab_rename "${dir:-/}"
+        __zellij_tab_rename "$(__zellij_tab_path)"
     }
 
     trap '__zellij_tab_busy' DEBUG
