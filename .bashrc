@@ -168,7 +168,7 @@ npx() { _nvm_lazy_load; npx "$@"; }
 
 eval "$(direnv hook bash)"
 
-# Dynamic zellij tab names: a tab is named "<command> / <path>" for whatever
+# Dynamic zellij tab names: a tab is named "<command> ❯ <path>" for whatever
 # command its pane starts, and drops back to the path once that command is done.
 #
 # `zellij action rename-tab` targets the *focused* tab - a pane cannot address
@@ -217,7 +217,7 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
         case $__ZELLIJ_TAB_SKIP in
             *" $cmd "*) return ;;
         esac
-        __zellij_tab_rename "$cmd / $(__zellij_tab_path)"
+        __zellij_tab_rename "$cmd ❯ $(__zellij_tab_path)"
     }
 
     # Last PROMPT_COMMAND entry: the command is done, so go back to the cwd.
