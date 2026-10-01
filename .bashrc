@@ -170,12 +170,24 @@ eval "$(direnv hook bash)"
 
 # Dynamic zellij tab names: a tab is named "<command> ❯ <path>" for whatever
 # command its pane starts, and drops back to the path once that command is done.
+# `ssh` is named after the server instead of the path: "ssh ❯ <host>".
+#
+# The path is shortened fish-style - every directory cut to the shortest prefix
+# no sibling shares, except the last one and the root of the git repo you are
+# in, which stay whole: ~/projects/kiwi/infra/modules/fastly -> ~/p/k/infra/m/fastly
 #
 # `zellij action rename-tab` targets the *focused* tab - a pane cannot address
 # the tab it lives in from the inside - so the reset is skipped for anything
 # that ran longer than __ZELLIJ_TAB_IDLE_AFTER seconds: by then the pane may be
 # in a tab that is no longer on screen, and renaming would hit the wrong tab.
 # Such a tab keeps the command name until the next command runs in it.
+#
+# Focusing another split renames the tab after that split: while at a prompt
+# the shell turns on focus reporting (DECSET 1004), zellij sends ESC [ I into a
+# pane as it gains focus, and readline runs __zellij_tab_focus on it. Reporting
+# is switched off again before every command, so programs that never asked for
+# it do not get stray escape sequences. A split busy running something (vim,
+# ssh, ...) leaves the tab name as it was when focused.
 #
 # Keep this block last in ~/.bashrc: __zellij_tab_idle has to be the final
 # PROMPT_COMMAND entry (direnv above appends one too), otherwise the DEBUG trap
@@ -186,8 +198,63 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
     __ZELLIJ_TAB_SKIP=" cd ls ll la clear pwd echo export unset which type source . "
 
     __zellij_tab_path() {
-        local path=${PWD/#$HOME/\~}
-        printf '%s' "${path:-/}"
+        local - dir=$PWD root= d prefix= acc= part short n out= parts matches
+        # The DEBUG trap calls this with globbing off; the sibling lookup needs it.
+        set +f
+        # Nearest enclosing git repo, found by stat alone - no git fork per prompt.
+        d=$dir
+        while [ -n "$d" ]; do
+            if [ -e "$d/.git" ]; then root=$d; break; fi
+            d=${d%/*}
+        done
+        case $dir/ in
+            "$HOME"/*) prefix='~' acc=$HOME dir=${dir#"$HOME"} ;;
+        esac
+        IFS=/ read -ra parts <<< "${dir#/}"
+        # Every caller runs this in $(...), but restore the globbing options
+        # anyway so a direct call cannot leak them into the interactive shell.
+        local restore
+        restore=$(shopt -p nullglob dotglob)
+        shopt -s nullglob dotglob
+        for part in "${parts[@]}"; do
+            short=$part
+            if [ "$acc/$part" != "$PWD" ] && [ "$acc/$part" != "$root" ]; then
+                # Shortest prefix no sibling directory shares, so ~/.config and
+                # ~/.claude come out as ~/.co and ~/.cl rather than both ~/.c.
+                n=1
+                case $part in .*) n=2 ;; esac
+                while [ "$n" -lt "${#part}" ]; do
+                    matches=("$acc/${part:0:n}"*/)
+                    [ "${#matches[@]}" -le 1 ] && break
+                    n=$((n + 1))
+                done
+                short=${part:0:n}
+            fi
+            acc=$acc/$part
+            out=$out/$short
+        done
+        eval "$restore"
+        out=$prefix$out
+        printf '%s' "${out:-/}"
+    }
+
+    # Server out of an ssh command line: first non-option argument, with any
+    # ssh:// scheme, user@ and :port stripped.
+    __zellij_tab_ssh_host() {
+        local word skip=
+        for word in "$@"; do
+            if [ -n "$skip" ]; then skip=; continue; fi
+            case $word in
+                -[BbcDEeFIiJLlmOoPpQRSWw]) skip=1 ;;
+                -*) ;;
+                *)
+                    word=${word#ssh://}
+                    word=${word##*@}
+                    printf '%s' "${word%%:*}"
+                    return
+                    ;;
+            esac
+        done
     }
 
     __zellij_tab_rename() {
@@ -205,8 +272,12 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
         [ -n "${COMP_LINE:-}" ] && return
         __zellij_tab_armed=
         __zellij_tab_started=$SECONDS
-        local word cmd=
-        for word in $BASH_COMMAND; do
+        printf '\e[?1004l' 2>/dev/null >/dev/tty
+        local - word cmd= host
+        set -f
+        set -- $BASH_COMMAND
+        for word; do
+            shift
             case $word in
                 *=*|sudo|doas|env|command|time|builtin|exec|nohup) continue ;;
             esac
@@ -217,7 +288,11 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
         case $__ZELLIJ_TAB_SKIP in
             *" $cmd "*) return ;;
         esac
-        __zellij_tab_rename "$cmd ❯ $(__zellij_tab_path)"
+        if [ "$cmd" = ssh ] && host=$(__zellij_tab_ssh_host "$@") && [ -n "$host" ]; then
+            __zellij_tab_rename "ssh ❯ $host"
+        else
+            __zellij_tab_rename "$cmd ❯ $(__zellij_tab_path)"
+        fi
     }
 
     # Last PROMPT_COMMAND entry: the command is done, so go back to the cwd.
@@ -228,10 +303,20 @@ if [ -n "${ZELLIJ:-}" ] && command -v zellij >/dev/null 2>&1; then
             __zellij_tab_started=
         fi
         __zellij_tab_armed=1
+        printf '\e[?1004h' 2>/dev/null >/dev/tty
         [ "$elapsed" -gt "$__ZELLIJ_TAB_IDLE_AFTER" ] && return
         __zellij_tab_rename "$(__zellij_tab_path)"
     }
 
+    # Focus-in from zellij. The cached name is dropped first: another split in
+    # this tab has most likely renamed it since this shell last did.
+    __zellij_tab_focus() {
+        __zellij_tab_name=
+        __zellij_tab_rename "$(__zellij_tab_path)"
+    }
+
+    bind -x '"\e[I": __zellij_tab_focus'
+    bind -x '"\e[O": :'
     trap '__zellij_tab_busy' DEBUG
     PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}__zellij_tab_idle"
 fi
