@@ -5,13 +5,13 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Ctrl+Cmd+D → Option+Forward Delete",
+                        "description": "Ctrl+Option+D → Option+Forward Delete",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "d",
                                     "modifiers": {
-                                        "mandatory": ["control", "command"],
+                                        "mandatory": ["control", "option"],
                                         "optional": ["caps_lock"]
                                     }
                                 },
