@@ -2,6 +2,21 @@
   "$schema": "https://opencode.ai/config.json",
   "share": "disabled",
   "plugin": ["@tarquinen/opencode-dcp@latest"],
+  "provider": {
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LiteLLM",
+      "options": {
+        "baseURL": "https://proxyai.skypicker.com/v1",
+        "apiKey": "{env:OPENCODE_LITELLM_API_KEY}"
+      },
+      "models": {
+        "chico": {
+          "name": "Chico"
+        }
+      }
+    }
+  },
   "mcp": {
     "gitlab": {
       "type": "local",
