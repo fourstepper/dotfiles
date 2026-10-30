@@ -17,7 +17,6 @@ local servers = {
 	"jsonls",
 	"html",
 	"cssls",
-	"tailwindcss",
 	"eslint",
 	"ts_ls",
 	"svelte",
