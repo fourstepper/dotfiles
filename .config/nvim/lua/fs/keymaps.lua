@@ -2,22 +2,31 @@ local map = vim.keymap.set
 
 -- Make S-Tab unindent in insert mode
 map("i", "<S-Tab>", "<C-d>")
--- Make Y yank to end of the line
-map("n", "Y", "y$")
 -- Don't lose paste content when replacing something
 map("x", "<leader>p", '"_dP')
 -- Make new horizontal split and switch over to it
 map("n", "<leader>w", "<C-w><C-s><C-w>j")
 -- Make new vertical split and switch over to it
 map("n", "<leader>v", "<C-w><C-v><C-w>l")
+-- Toggle a zoomed copy of the current window in its own tab
+map("n", "<leader>m", function()
+	if vim.t.maximized then
+		vim.cmd.tabclose()
+	else
+		vim.cmd("tab split")
+		vim.t.maximized = true
+	end
+end)
 -- Tmux mappings for switching between nvim and tmux seamlessly
 map("n", "<M-h>", "<cmd>TmuxNavigateLeft<CR>", { silent = true })
 map("n", "<M-j>", "<cmd>TmuxNavigateDown<CR>", { silent = true })
 map("n", "<M-k>", "<cmd>TmuxNavigateUp<CR>", { silent = true })
 map("n", "<M-l>", "<cmd>TmuxNavigateRight<CR>", { silent = true })
--- Ansible-vault
-map("n", "<leader>ave", "<cmd>AnsibleVault<CR>", { silent = true })
-map("n", "<leader>avd", "<cmd>AnsibleUnvault<CR>", { silent = true })
+-- Git
+map("n", "<leader>gg", "<cmd>G<CR>")
+map("n", "<leader>ga", ":G ", { desc = "Git command" })
+map("n", "<leader>gb", "<cmd>GBrowse<CR>")
+map("v", "<leader>gb", ":GBrowse<CR>")
 -- Git merge resolution
 map("n", "<leader>gj", "<cmd>diffget //3<CR>")
 map("n", "<leader>gf", "<cmd>diffget //2<CR>")
@@ -30,7 +39,6 @@ map("n", "<leader>km", function() require("telescope.builtin").keymaps() end)
 -- LSP
 map("n", "gd", function() require("telescope.builtin").lsp_definitions() end)
 map("n", "gr", function() require("telescope.builtin").lsp_references() end)
-map("n", "K", function() vim.lsp.buf.hover() end)
 -- Diagnostics
 map("n", "<leader>xd", function() require("telescope.builtin").diagnostics({ bufnr = 0 }) end)
 map("n", "<leader>xw", function() require("telescope.builtin").diagnostics() end)
