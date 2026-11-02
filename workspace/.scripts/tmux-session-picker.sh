@@ -3,11 +3,13 @@
 # creates one named after the query when nothing matches; ctrl-n always
 # creates one named after the query.
 
+current=$(tmux display-message -p '#{session_name}')
+
 name=$(
 	tmux list-sessions -F '#{session_last_attached},#{session_name}' |
 		sort -rn |
-		tail -n +2 |
 		cut -d',' -f2- |
+		awk -v current="$current" '$0 != current' |
 		fzf --reverse --header 'jump-to-session (ctrl-n: new)' \
 			--bind=shift-tab:up,tab:down --cycle \
 			--bind 'enter:accept-or-print-query' \
