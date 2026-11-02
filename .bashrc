@@ -50,9 +50,6 @@ fi
 
 export EDITOR="nvim"
 
-# don't warn about bash not being available on macos
-export BASH_SILENCE_DEPRECATION_WARNING=1
-
 # npm: only install package versions published at least 3 days ago
 # (env var instead of ~/.npmrc, so the file `npm login` writes tokens to stays untracked)
 export npm_config_min_release_age=3
