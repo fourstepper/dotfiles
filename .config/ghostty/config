@@ -1,0 +1,59 @@
+# Ported from ~/.config/alacritty/alacritty.toml
+
+theme = papercolor-light
+
+font-family = Iosevka Term
+font-size = 14
+# Alacritty draws glyphs heavier than CoreText does by default; thicken to match.
+font-thicken = true
+# Tighter letter spacing; negative shrinks the cell width (percent or pixels).
+# adjust-cell-width = -5%  (tuned for JetBrains Mono; Iosevka Term is already narrow)
+
+# Alt/Cmd + letter send Meta sequences (consumed by zellij/shell).
+keybind = alt+o=text:\x1bo
+keybind = cmd+o=text:\x1bo
+keybind = alt+d=text:\x1bd
+keybind = alt+s=text:\x1bs
+keybind = alt+h=text:\x1bh
+keybind = alt+j=text:\x1bj
+keybind = alt+k=text:\x1bk
+keybind = alt+l=text:\x1bl
+
+# Line/word editing.
+keybind = cmd+backspace=text:\x15
+keybind = alt+backspace=text:\x1b\x7f
+keybind = alt+arrow_left=text:\x1bb
+keybind = alt+arrow_right=text:\x1bf
+keybind = cmd+arrow_left=text:\x1bOH
+keybind = cmd+arrow_right=text:\x1bOF
+
+keybind = shift+enter=text:\x1b\r
+
+# Alt/Cmd + digit send Meta-digit (zellij tab switching).
+keybind = alt+digit_0=text:\x1b0
+keybind = alt+digit_1=text:\x1b1
+keybind = alt+digit_2=text:\x1b2
+keybind = alt+digit_3=text:\x1b3
+keybind = alt+digit_4=text:\x1b4
+keybind = alt+digit_5=text:\x1b5
+keybind = alt+digit_6=text:\x1b6
+keybind = alt+digit_7=text:\x1b7
+keybind = alt+digit_8=text:\x1b8
+keybind = alt+digit_9=text:\x1b9
+keybind = cmd+digit_0=text:\x1b0
+keybind = cmd+digit_1=text:\x1b1
+keybind = cmd+digit_2=text:\x1b2
+keybind = cmd+digit_3=text:\x1b3
+keybind = cmd+digit_4=text:\x1b4
+keybind = cmd+digit_5=text:\x1b5
+keybind = cmd+digit_6=text:\x1b6
+keybind = cmd+digit_7=text:\x1b7
+keybind = cmd+digit_8=text:\x1b8
+keybind = cmd+digit_9=text:\x1b9
+
+# Solid black block cursor. no-cursor stops shell integration from switching to a bar at the prompt.
+cursor-style = block
+cursor-style-blink = false
+cursor-color = #000000
+cursor-text = #ffffff
+shell-integration-features = no-cursor
