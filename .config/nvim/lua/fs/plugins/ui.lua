@@ -70,11 +70,4 @@ return {
 			},
 		},
 	},
-	{
-		-- Renders markdown inside the buffer: no browser, no local HTTP server
-		"MeanderingProgrammer/render-markdown.nvim",
-		ft = "markdown",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {},
-	},
 }

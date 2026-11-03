@@ -4,7 +4,7 @@ local parsers = {
 	"gosum",
 	"python",
 	"templ",
-	-- Bundled with Neovim (help, hover docs, render-markdown); installed here so they match nvim-treesitter's queries
+	-- Bundled with Neovim (help, hover docs); installed here so they match nvim-treesitter's queries
 	"c",
 	"lua",
 	"markdown",
