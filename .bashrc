@@ -142,7 +142,10 @@ alias cds='cd ~/workspace/'
 alias cdw='cd ~/workspace/work/'
 alias cdp='cd ~/workspace/personal/'
 alias cdi='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs'
-alias randompass='< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-32};echo;'
+# Function, not alias: aliases can't take args. LC_ALL=C stops macOS tr
+# choking on non-UTF-8 bytes ("Illegal byte sequence").
+unalias randompass 2>/dev/null  # old alias would break re-sourcing
+randompass() { LC_ALL=C tr -dc 'A-Za-z0-9_-' < /dev/urandom | head -c "${1:-32}"; echo; }
 alias ca='cursor-agent'
 
 # enable programmable completion features (you don't need to enable
